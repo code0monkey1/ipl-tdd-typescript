@@ -1,4 +1,4 @@
-export type MatchProps = {
+export type TMatchProps = {
   matchId: string;
   season: string;
   city: string;
@@ -23,7 +23,7 @@ export class Match {
   private readonly result: string;
   private readonly winner: string;
 
-  constructor(matchProps: MatchProps) {
+  constructor(matchProps: TMatchProps) {
     this.matchId = matchProps.matchId;
     this.season = matchProps.season;
     this.city = matchProps.city;

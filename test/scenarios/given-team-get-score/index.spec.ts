@@ -1,5 +1,5 @@
 import { IRepo } from "../../../src/data/interfaces"
-import { Match, MatchProps } from "../../../src/entities/Match"
+import { Match, TMatchProps } from "../../../src/entities/Match"
 import { ITeamWins } from "../../../src/scenarios/given-team-get-score"
 
 
@@ -121,7 +121,7 @@ describe('given-team-get-score', () => {
 
 const createMatchWithWinner=(winner:string)=>{
     
-     const matchAProps:MatchProps={
+     const matchAProps:TMatchProps={
        
                     matchId: "",
                     season: "",

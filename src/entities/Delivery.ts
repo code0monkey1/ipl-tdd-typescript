@@ -1,4 +1,4 @@
-export type DeliveryProps = {
+export type TDeliveryProps = {
   matchId: number;
   inning: number;
   battingTeam: string;
@@ -35,7 +35,7 @@ export class Delivery {
   private readonly extraRuns: number;
   private readonly totalRuns: number;
 
-  constructor(deliveryProps: DeliveryProps) {
+  constructor(deliveryProps: TDeliveryProps) {
     this.matchId = deliveryProps.matchId;
     this.inning = deliveryProps.inning;
     this.battingTeam = deliveryProps.battingTeam;
