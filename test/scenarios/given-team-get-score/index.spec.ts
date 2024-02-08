@@ -51,7 +51,6 @@ describe('given-team-get-score', () => {
 
        describe('single match', () => {
 
-        describe('single team', () => {
           
           it.each([{winningTeam:'a'},
                    {winningTeam:'b'},
@@ -81,7 +80,6 @@ describe('given-team-get-score', () => {
        
         })
       
-       })
 
        describe('multiple matches', () => {
 
