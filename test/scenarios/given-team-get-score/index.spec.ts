@@ -29,7 +29,7 @@ describe('given-team-get-score', () => {
           
            it('returns zero',()=>{
              
-              //arrange
+            //arrange
 
             const matchRepo= createMatchesRepo([])
 
@@ -86,10 +86,10 @@ describe('given-team-get-score', () => {
        describe('multiple matches', () => {
 
          it.each([
-          { matches:['a','b','b','b'],team:'b',wins:3},
+         { matches:['a','b','b','b'],team:'b',wins:3},
          { matches:['a','b','b','b'],team:'a',wins:1},
          { matches:['a','c','c','b'],team:'c',wins:2},
-          { matches:['a','c','c','b'],team:'d',wins:0}
+         { matches:['a','c','c','b'],team:'d',wins:0}
         ])
                   ( "In matches:$matches , team : $team has wins: $wins",({matches,team,wins})=>{
            
