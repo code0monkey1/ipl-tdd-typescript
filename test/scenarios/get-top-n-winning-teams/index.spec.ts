@@ -6,43 +6,28 @@ export class TopNWinningTeams{
    constructor(
       private topN:number, 
       private uniqueTossWinningTeams:IUniqueTossWinningTeams,
-      private mappedTeamScores :IMappedTeamScores,
-      private sortedTeamScores:ISortedTeamScores,
-      private topNTeams:ITopNTeams
+      private mappedTeamWins :IMappedTeamWins,
+      private sortedTeamWins:ISortedTeamWins,
+      private topNTeamWins:ITopNTeamWins
       ){}
 
    execute(matches:Match[]):[string, number][]{
 
          const uniqueTeamNames  =  this.uniqueTossWinningTeams.getNames(matches)
 
-         const map = new Map<string,number>
-
-         for(let name of uniqueTeamNames){
-
-            const tot= matches.reduce((tot,match)=>{ 
-
-               if(match.getWinningTeam()==name) tot+=1
-               
-               return tot
+         const team_wins =this.mappedTeamWins.execute(uniqueTeamNames,matches)
          
-            },0)
-             
-           map.set(name,tot);
+         const sorted_team_wins = this.sortedTeamWins.sort(team_wins)
+        
+        const top_n_wins = this.topNTeamWins.topN(sorted_team_wins,this.topN)
 
-         }
-
-         const sortedMap = new Map( Array.from(map.entries())
-                                       .sort((a, b) => b[1] - a[1])
-         );
-         
-        return Array.from(sortedMap.entries()).slice(0, this.topN);
-      
+        return top_n_wins
    }
      
 }
 
-class MappedTeamScores implements IMappedTeamScores{
-   execute(teamNames: string[], matches: Match[]): Map<string, number> {
+export class MappedTeamWins implements IMappedTeamWins{
+   execute(teamNames: Set<string>, matches: Match[]): Map<string, number> {
 
        const team_wins = new Map<string,number>
 
@@ -64,38 +49,33 @@ class MappedTeamScores implements IMappedTeamScores{
    }
    
 }
-interface IMappedTeamScores{
-   execute(teamNames:string[],matches:Match[]):Map<string,number>
+interface IMappedTeamWins{
+   execute(teamNames:Set<string>,matches:Match[]):Map<string,number>
 }
-interface ISortedTeamScores{
-   sort(uniqueTeamNames:string[],matches:Match[]):Map<string,number>
-}
-
-interface ITopNTeams{
-   topN(map:Map<string,number>,topN:number):[string,number][]
+interface ISortedTeamWins{
+   sort(team_wins:Map<string,number>):Map<string,number>
 }
 
-export class TopNTeams implements ITopNTeams{
-   topN(map: Map<string, number>,topN:number): [string, number][] {
-      return Array.from(map.entries()).slice(0, topN);
+interface ITopNTeamWins{
+   topN(sortedTeamWins:Map<string,number>,topN:number):[string,number][]
+}
+
+export class TopNTeamWins implements ITopNTeamWins{
+   topN(sortedTeamWins: Map<string, number>,topN:number): [string, number][] {
+      
+      return Array.from(sortedTeamWins.entries()).slice(0, topN);
    }
    
 }
 
-export class SortedTeamScores implements ISortedTeamScores{
-   sort(uniqueTeamNames: string[],matches:Match[]) {
-     const map = new Map<string,number>
+export class SortedTeamWins implements ISortedTeamWins{
+  sort(team_wins: Map<string, number>): Map<string, number> {
 
-         for(let name of uniqueTeamNames){
-             
-           let count = map.get(name) || 1;
-
-           map.set(name, count + 1);
-
-         }
-
-    return map
-   }
+  return new Map( Array.from(team_wins.entries())
+                                       .sort((a, b) => b[1] - a[1]))
+     
+  }
+  
 
 }
 
