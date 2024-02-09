@@ -3,7 +3,8 @@ import { IUniqueTossWinningTeams } from "../../../src/scenarios/unique-toss-winn
 
 export class TopNWinningTeams{
 
-   constructor(private topN:number, 
+   constructor(
+      private topN:number, 
       private uniqueTossWinningTeams:IUniqueTossWinningTeams,
       private sortedTeamScores:ISortedTeamScores,
       private topNTeams:ITopNTeams
