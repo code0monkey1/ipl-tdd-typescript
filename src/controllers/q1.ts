@@ -86,6 +86,7 @@ export class TopNWinningTeams{
 }
 
 export class MappedTeamWins implements IMappedTeamWins{
+   
    execute(teamNames: Set<string>, matches: Match[]): Map<string, number> {
 
        const team_wins = new Map<string,number>
