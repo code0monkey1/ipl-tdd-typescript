@@ -1,21 +1,5 @@
-import { Match } from "../../../../src/entities/Match"
-import { createMatch } from "../filter-matches-by-year/helper"
-
-  class UniqueTossWinners{
-
-       getTeamNames( matches:Match[]):Set<string>{
-        
-          const tossWinningTeamNames = new Set<string>
-          
-          for(let match of matches){
-             if(!tossWinningTeamNames.has(match.getTossWinner()))
-                   tossWinningTeamNames.add(match.getTossWinner())
-          }
-         
-         return tossWinningTeamNames
-       }
-           
-  }
+import { UniqueTossWinningTeamNames } from '../../../../src/scenarios/unique-toss-winning-team-names/index';
+import { createMatch } from "../filter-matches-by-year/helper";
 
 
 describe('unique-team-names-that-won-toss', () => {
@@ -33,10 +17,10 @@ describe('unique-team-names-that-won-toss', () => {
          createMatch({tossWinner:'a'}),
          createMatch({tossWinner:'a'})]
 
-         const sut = new UniqueTossWinners()
+         const sut = new UniqueTossWinningTeamNames()
 
          const expected =new Set('a')
-
+         
          //act 
 
          const actual = sut.getTeamNames(matches)
@@ -46,8 +30,6 @@ describe('unique-team-names-that-won-toss', () => {
          expect(actual).toStrictEqual(expected)
 
        })
-
-
    })
 
 
@@ -63,7 +45,7 @@ describe('unique-team-names-that-won-toss', () => {
          createMatch({tossWinner:'b'}),
          createMatch({tossWinner:'b'})]
 
-         const sut = new UniqueTossWinners()
+         const sut = new UniqueTossWinningTeamNames()
 
          const expected =new Set(['a','b'])
 
@@ -74,7 +56,7 @@ describe('unique-team-names-that-won-toss', () => {
 
          //assert
          expect(actual).toStrictEqual(expected)
-
+         expect(actual.size).toBe(2)
 
        })
 
