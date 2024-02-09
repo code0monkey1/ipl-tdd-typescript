@@ -1,18 +1,4 @@
-import { IRepo } from "../../../../src/data/interfaces";
-import { IFilter } from '../../../../src/data/interfaces/filters/index';
-import { Match, TMatchProps } from "../../../../src/entities/Match";
-import { createMatchesRepo } from "../../team-win-count/helper";
-
-class FilterMatchesByYear implements IFilter{
-  
-  constructor(private match:Match,private filterYear:string){}
-  isValid(): boolean {
-     return this.match.getYear()==this.filterYear
-  }
-
-
-
-}
+import { createFilterMatchByYear, createMatch } from './helper';
 
 describe('filter-matches-by-year', () => {
   
@@ -21,24 +7,11 @@ describe('filter-matches-by-year', () => {
 
     //arrange
 
-    const matchProps:TMatchProps={
-      matchId: "",
-      season: "",
-      city: "",
-      date: "",
-      team1: "",
-      team2: "",
-      tossWinner: "",
-      tossDecision: "",
-      result: "",
-      winner: ""
-    }
-
-    const match = new Match(matchProps)
+    const match = createMatch({season:'2016'})
 
     const filterYear='2017'
 
-    const sut =new FilterMatchesByYear(match,filterYear)
+    const sut =createFilterMatchByYear(match,filterYear)
 
     //act
 
@@ -50,7 +23,28 @@ describe('filter-matches-by-year', () => {
     expect(actual).not.toBeTruthy()
   })
    
-  it.todo('match')
+  
+  it('match',()=>{
+
+
+    //arrange
+
+    const match = createMatch({season:'2017'})
+
+    const filterYear='2017'
+
+    const sut =createFilterMatchByYear(match,filterYear)
+
+    //act
+
+    const actual =sut.isValid()
+
+
+    //assert
+
+    expect(actual).toBeTruthy()
+  })
+   
 
 
     
