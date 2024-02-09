@@ -12,7 +12,7 @@ export class TopNTeamsThatElectedToFieldFirstAfterWinningTossInYear{
           constructor(
             private matchesRepo:IRepo<Match>,
             private filterYear:string,
-            private topWiningTeams:TopNWinningTeams
+            private topNWiningTeams:TopNWinningTeams
             ){}
 
           execute(){
@@ -32,7 +32,7 @@ export class TopNTeamsThatElectedToFieldFirstAfterWinningTossInYear{
                 return acc
               },[] as Match[])
 
-             return this.topWiningTeams.execute(filteredMatches)
+             return this.topNWiningTeams.execute(filteredMatches)
    
           }
   
