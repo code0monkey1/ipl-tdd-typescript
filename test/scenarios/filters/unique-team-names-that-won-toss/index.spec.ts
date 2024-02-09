@@ -27,14 +27,23 @@ describe('unique-team-names-that-won-toss', () => {
        it('will return team a',()=>{
 
          //arrange 
-         const match = [createMatch({tossWinner:'a'})]
+         const matches = [
+          createMatch({tossWinner:'a'}),
+         createMatch({tossWinner:'a'}),
+         createMatch({tossWinner:'a'}),
+         createMatch({tossWinner:'a'})]
 
          const sut = new UniqueTossWinners()
 
+         const expected =new Set('a')
+
          //act 
 
+         const actual = sut.getTeamNames(matches)
+ 
 
          //assert
+         expect(actual).toStrictEqual(expected)
 
        })
 
@@ -45,7 +54,29 @@ describe('unique-team-names-that-won-toss', () => {
    describe('when 2 unique teams , which won toss ,', () => {
        
 
-       it.todo('will return team a')
+       it('will return team a and b',()=>{
+        
+          //arrange 
+         const matches = [
+          createMatch({tossWinner:'a'}),
+         createMatch({tossWinner:'a'}),
+         createMatch({tossWinner:'b'}),
+         createMatch({tossWinner:'b'})]
+
+         const sut = new UniqueTossWinners()
+
+         const expected =new Set(['a','b'])
+
+         //act 
+
+         const actual = sut.getTeamNames(matches)
+ 
+
+         //assert
+         expect(actual).toStrictEqual(expected)
+
+
+       })
 
        
    })
