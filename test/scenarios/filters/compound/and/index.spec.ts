@@ -77,7 +77,7 @@ describe('filters', () => {
     
       })
 
-      it('does meet 1 required filter , and meets at least 1 of many optional filters',()=>{
+      it('does meets all required filter , and meets at least 1 of many optional filters',()=>{
          
           //arrange
           const match= createMatch({season:"2016",tossDecision:"field"})
