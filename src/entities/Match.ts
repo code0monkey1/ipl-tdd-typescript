@@ -41,4 +41,9 @@ export class Match {
        
        return this.winner
   }
+
+  public getYear(){
+      
+       return this.season
+  }
 }

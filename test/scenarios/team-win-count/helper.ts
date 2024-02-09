@@ -1,6 +1,6 @@
 import { IRepo } from "../../../src/data/interfaces";
 import { Match, TMatchProps } from "../../../src/entities/Match";
-import { TeamWins } from '../../../src/scenarios/given-team-get-score/index';
+import { TeamWinCount } from '../../../src/scenarios/team-win-count/index';
 
 
 const createMatchWithWinner=(winner:string)=>{
@@ -47,7 +47,7 @@ export const createMatchesRepo=(matches:Match[])=>{
 
 export const createTeamWins=(matchRepo:IRepo<Match>)=>{
         
-      return new TeamWins(matchRepo)
+      return new TeamWinCount(matchRepo)
        
 }
 

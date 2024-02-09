@@ -1,13 +1,13 @@
 import { IRepo } from "../../data/interfaces"
 import { Match } from "../../entities/Match"
 
-export interface ITeamWins {
+export interface ITeamWinCount {
       
      getCount(team:string):number
       
 }
 
-export class TeamWins implements ITeamWins{
+export class TeamWinCount implements ITeamWinCount{
 
   constructor(private matchRepo:IRepo<Match>){}
   
