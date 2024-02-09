@@ -1,7 +1,6 @@
 import { createMatchWithWinnersArray, createMatchesRepo, createTeamWins } from "./helper";
 
 
-
 describe('given-team-get-score', () => {
    
     describe('winCount', () => {
