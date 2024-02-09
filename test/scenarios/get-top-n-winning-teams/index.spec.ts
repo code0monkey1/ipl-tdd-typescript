@@ -1,11 +1,11 @@
-import { Match } from "../../../src/entities/Match"
-import { IUniqueTossWinningTeams } from "../../../src/scenarios/unique-toss-winning-team-names"
+import { Match } from "../../../src/entities/Match";
+import { IUniqueTossWinningTeams } from "../../../src/scenarios/unique-toss-winning-team-names";
 
-class TopNWinningTeams{
+export class TopNWinningTeams{
 
    constructor(private topN:number, private uniqueTossWinningTeams:IUniqueTossWinningTeams){}
 
-   execute(matches:Match[]){
+   execute(matches:Match[]):[string, number][]{
 
          const uniqueTeamNames  =  this.uniqueTossWinningTeams.getNames(matches)
 
@@ -13,11 +13,19 @@ class TopNWinningTeams{
 
          for(let name of uniqueTeamNames){
              
-           map.set(name,1)
-            
+           let count = map.get(name) || 1;
+
+           map.set(name, count + 1);
+
          }
 
-          
+         const sortedMap = new Map(
+                     Array.from(map.entries())
+            .sort((a, b) => b[1] - a[1])
+         );
+         
+        return Array.from(sortedMap.entries()).slice(0, this.topN);
+      
    }
      
 }
