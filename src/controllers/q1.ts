@@ -15,9 +15,12 @@ export class TopNTeamsThatElectedToFieldFirstAfterWinningTossInYear{
               const matches = matchesRepo.data
 
             // filter matches by year , field first
-             const filteredMatches = matches.reduce((acc,match)=>{
+            const filteredMatches = matches.reduce((acc,match)=>{
                
-                if(new And([new MatchPlayedInYear(match,filterYear),new MatchTeamFieldsAfterWinningToss(match)])){
+                if(new And(
+                    [new MatchPlayedInYear(match,filterYear),
+                      new MatchTeamFieldsAfterWinningToss(match)
+                    ])){
                    acc.push(match)
                 }
                 return acc
