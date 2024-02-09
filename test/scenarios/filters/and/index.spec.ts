@@ -1,21 +1,9 @@
 
-import { IFilter } from "../../../../src/data/interfaces"
-import { createFilterMatchByYear, createMatch } from "../filter-matches-by-year/helper"
+import { createTeamFieldsAfterWinningToss } from "../fields-after-winning-toss/helper";
+import { createFilterMatchByYear, createMatch } from "../filter-matches-by-year/helper";
+import { createAnd } from './helper';
 
-export class And implements IFilter{
 
-  constructor(private filters:IFilter[]){}
-  isValid(): boolean {
-     
-     for(let filter of this.filters){
-          
-           if ( !filter.isValid()) return false
-     }
-     
-    return true
-  }
-
-}
 
 describe('filters', () => {
    
@@ -27,9 +15,9 @@ describe('filters', () => {
           
           const match= createMatch({season:"2017"})
 
-          const filters=[createFilterMatchByYear(match,"2017")] 
+          const filters=[createFilterMatchByYear(match,"2017"),createTeamFieldsAfterWinningToss('field')] 
 
-          const sut = new And(filters)
+          const sut = createAnd(filters)
 
           const expected = true
 
@@ -43,14 +31,16 @@ describe('filters', () => {
 
       })
 
-      it('does not meet some filter criteria',()=>{
+      it('does not meet 1 filter criteria',()=>{
       //arrange
           
-          const match= createMatch({season:"2016"})
+          const match= createMatch({season:"2017"})
 
-          const filters=[createFilterMatchByYear(match,"2017")] 
+          const filters=[
+            createFilterMatchByYear(match,"2017"),createTeamFieldsAfterWinningToss('bat')
+          ] 
 
-          const sut = new And(filters)
+          const sut =createAnd(filters)
 
           const expected = false
 
@@ -63,8 +53,32 @@ describe('filters', () => {
           expect(actual).toBe(expected)
     
       })
+
+
+      it('does not meet any filter criteria',()=>{
+      //arrange
+          
+          const match= createMatch({season:"2016"})
+
+          const filters=[
+            createFilterMatchByYear(match,"2017"),createTeamFieldsAfterWinningToss('bat')
+          ] 
+
+          const sut = createAnd(filters)
+
+          const expected = false
+
+          //act
+
+          const actual = sut.isValid()
+
+          //assert
+
+          expect(actual).toBe(expected)
+    
+      })
+
   })
   
 })
-
 
