@@ -1,5 +1,5 @@
 
-import { createTeamFieldsAfterWinningToss } from "../../fields-after-winning-toss/helper";
+import { createMatchTeamFieldsAfterWinningToss } from "../../fields-after-winning-toss/helper";
 import { createFilterMatchByYear, createMatch } from "../../filter-matches-by-year/helper";
 import { createAnd } from './helper';
 
@@ -13,7 +13,7 @@ describe('filters', () => {
           
           const match= createMatch({season:"2017"})
 
-          const filters=[createFilterMatchByYear(match,"2017"),createTeamFieldsAfterWinningToss('field')] 
+          const filters=[createFilterMatchByYear(match,"2017"),createMatchTeamFieldsAfterWinningToss('field')] 
 
           const sut = createAnd(filters)
 
@@ -35,7 +35,7 @@ describe('filters', () => {
           const match= createMatch({season:"2017"})
 
           const filters=[
-            createFilterMatchByYear(match,"2017"),createTeamFieldsAfterWinningToss('bat')
+            createFilterMatchByYear(match,"2017"),createMatchTeamFieldsAfterWinningToss('bat')
           ] 
 
           const sut =createAnd(filters)
@@ -59,7 +59,7 @@ describe('filters', () => {
           const match= createMatch({season:"2016"})
 
           const filters=[
-            createFilterMatchByYear(match,"2017"),createTeamFieldsAfterWinningToss('bat')
+            createFilterMatchByYear(match,"2017"),createMatchTeamFieldsAfterWinningToss('bat')
           ] 
 
           const sut = createAnd(filters)
@@ -76,7 +76,31 @@ describe('filters', () => {
     
       })
 
-      it.todo('does meet 1 required criteria , and meets at least 1 of many optional criteria')
+      it('does meet 1 required criteria , and meets at least 1 of many optional criteria',()=>{
+         
+          //arrange
+          const match= createMatch({season:"2016",tossDecision:""})
+
+
+          const filters=[
+            createFilterMatchByYear(match,"2017"),createMatchTeamFieldsAfterWinningToss('bat')
+          ] 
+          
+          // const createOrFilter = new Create
+          const sut = createAnd(filters)
+
+          const expected = false
+
+          //act
+
+          const actual = sut.isValid()
+
+          //assert
+
+          expect(actual).toBe(expected)
+
+
+      })
 
   })
   

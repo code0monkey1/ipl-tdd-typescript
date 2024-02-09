@@ -1,5 +1,4 @@
 
-import { createTeamFieldsAfterWinningToss } from './helper';
 
 describe('fields-after-winning-toss', () => {
       

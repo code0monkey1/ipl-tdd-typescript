@@ -1,7 +1,7 @@
 import { IFilter } from "../../../data/interfaces";
 import { Match } from "../../../entities/Match";
 
-export class TeamFieldsAfterWinningToss implements IFilter{
+export class MatchTeamFieldsAfterWinningToss implements IFilter{
 
   constructor(private match:Match){}
   isValid(): boolean {
