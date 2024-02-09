@@ -1,5 +1,5 @@
 import { Match, TMatchProps } from "../../../../src/entities/Match";
-import { FilterMatchByYear } from '../../../../src/scenarios/filters/filter-matches-by-year/index';
+import { MatchPlayedInYear } from '../../../../src/scenarios/filters/match-played-in-year/index';
 
 export const createMatch=(partialMatchProps:Partial<TMatchProps>)=>{
    
@@ -24,5 +24,5 @@ export const createMatch=(partialMatchProps:Partial<TMatchProps>)=>{
 
 export const createFilterMatchByYear =(match:Match,filterYear:string)=>{
 
-     return new FilterMatchByYear(match,filterYear)
+     return new MatchPlayedInYear(match,filterYear)
 }

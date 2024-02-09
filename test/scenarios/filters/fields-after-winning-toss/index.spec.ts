@@ -1,18 +1,9 @@
-import { IFilter } from "../../../../src/data/interfaces/filters"
-import { Match } from "../../../../src/entities/Match"
-import { createMatch } from "../filter-matches-by-year/helper"
 
-class TeamFieldsAfterWinningToss implements IFilter{
+import { TeamFieldsAfterWinningToss } from '../../../../src/scenarios/filters/fields-after-winning-toss/index';
 
-  constructor(private match:Match){}
-  isValid(): boolean {
-    return this.match.getTossDecision()==='field'
-  }
-  
-}
+import { createMatch } from "../match-played-in-year/helper";
 
-
-describe('fielded-after-winning-toss', () => {
+describe('fields-after-winning-toss', () => {
       
 
     describe('isValid', () => {
@@ -21,8 +12,8 @@ describe('fielded-after-winning-toss', () => {
       it("chose to field",()=>{
             
         //arrange
-        const match = createMatch({tossDecision:'field'})
-        const sut = new TeamFieldsAfterWinningToss(match)
+
+        const sut = createTeamFieldsAfterWinningToss('field')
         const expected = true
         //act
 
@@ -39,8 +30,7 @@ describe('fielded-after-winning-toss', () => {
         
                     
         //arrange
-        const match = createMatch({tossDecision:'bat'})
-        const sut = new TeamFieldsAfterWinningToss(match)
+        const sut =createTeamFieldsAfterWinningToss('bat')
         const expected=false
         //act
 
@@ -56,6 +46,12 @@ describe('fielded-after-winning-toss', () => {
       
     })
     
+    const createTeamFieldsAfterWinningToss=(tossDecision:string)=>{
+          
+          const match = createMatch({tossDecision})
+         return new TeamFieldsAfterWinningToss(match)
+
+    }
 
      
 })
