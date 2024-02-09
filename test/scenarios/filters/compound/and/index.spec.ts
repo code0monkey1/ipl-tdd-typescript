@@ -1,7 +1,7 @@
 
 import { createMatchTeamFieldsAfterWinningToss } from "../../fields-after-winning-toss/helper";
 import { createFilterMatchByYear, createMatch } from "../../filter-matches-by-year/helper";
-import { createOrFilter } from "../or/index.spec";
+import { createOrFilter } from "../or/helper";
 import { createAnd } from './helper';
 
 describe('filters', () => {

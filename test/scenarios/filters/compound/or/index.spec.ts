@@ -1,7 +1,7 @@
 import { IFilter } from "../../../../../src/data/interfaces"
 import { createFilterMatchByYear, createMatch } from "../../filter-matches-by-year/helper"
 
-class Or implements IFilter{
+export class Or implements IFilter{
 
   constructor(private filters:IFilter[]){}
   isValid(): boolean {
@@ -75,7 +75,3 @@ describe('or', () => {
   
   
 })
-export const createOrFilter=(filters:IFilter[])=>{
-
-    return new Or(filters)
-}
