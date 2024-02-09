@@ -3,7 +3,8 @@ import { IUniqueTossWinningTeams } from "../../../src/scenarios/unique-toss-winn
 
 export class TopNWinningTeams{
 
-   constructor(private topN:number, private uniqueTossWinningTeams:IUniqueTossWinningTeams){}
+   constructor(private topN:number, 
+      private uniqueTossWinningTeams:IUniqueTossWinningTeams,){}
 
    execute(matches:Match[]):[string, number][]{
 
@@ -28,6 +29,14 @@ export class TopNWinningTeams{
       
    }
      
+}
+
+interface ISortedTeamScores{
+   sort(uniqueTeamNames:string[],)
+}
+
+export class SortedTeamScores{
+
 }
 
 describe('top-n-winning-teams', () => {

@@ -13,7 +13,7 @@ export class TopNTeamsThatElectedToFieldFirstAfterWinningTossInYear{
             private filterYear:string,
             private topN:number){
             
-              const matches = this.matchesRepo.data
+            const matches = this.matchesRepo.data
 
             // filter matches by year , and choose to field first
             const filteredMatches = matches.reduce((acc,match)=>{
@@ -31,11 +31,10 @@ export class TopNTeamsThatElectedToFieldFirstAfterWinningTossInYear{
 
 
             // get all unique team names that chose to field first
-                // which will an array of names
+            // which will an array of names
             const uniqueNames = new UniqueTossWinningTeams()
               
             
-
             // among the names , choose the ones that have top n wins
                 // which will be 
             
