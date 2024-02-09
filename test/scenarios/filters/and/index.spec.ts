@@ -46,13 +46,13 @@ describe('filters', () => {
       it('does not meet some filter criteria',()=>{
       //arrange
           
-          const match= createMatch({season:"2017"})
+          const match= createMatch({season:"2016"})
 
           const filters=[createFilterMatchByYear(match,"2017")] 
 
           const sut = new And(filters)
 
-          const expected = true
+          const expected = false
 
           //act
 
