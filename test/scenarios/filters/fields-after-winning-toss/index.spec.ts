@@ -18,22 +18,26 @@ describe('fielded-after-winning-toss', () => {
     describe('isValid', () => {
 
       
-      it("win toss and choose to field",()=>{
+      it("chose to field",()=>{
             
         //arrange
-        const match = createMatch({})
+        const match = createMatch({tossDecision:'field'})
         const sut = new TeamFieldsAfterWinningToss(match)
 
-            //act
-            //assert
+        //act
+
+        const actual= sut.isValid()
+        
+        //assert
+        expect(actual).toBeTruthy()
+
           
       })
              
       
-      it.todo('fielded but did not win toss')
+      it.todo('chose to bat')
   
-   
-      it.todo('won toss but did not field')
+  
 
       
     })
