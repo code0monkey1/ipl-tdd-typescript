@@ -50,4 +50,8 @@ export class Match {
   public getTossDecision(){
     return this.tossDecision
   }
+
+  public getTossWinner():string{
+     return this.tossWinner
+  }
 }
