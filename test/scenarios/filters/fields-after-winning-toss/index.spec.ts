@@ -1,7 +1,7 @@
 
 import { TeamFieldsAfterWinningToss } from '../../../../src/scenarios/filters/fields-after-winning-toss/index';
 
-import { createMatch } from "../match-played-in-year/helper";
+import { createMatch } from "../filter-matches-by-year/helper";
 
 describe('fields-after-winning-toss', () => {
       

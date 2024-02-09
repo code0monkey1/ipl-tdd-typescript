@@ -1,4 +1,4 @@
-import { IFilter } from "../../../data/interfaces/filters";
+import { IFilter } from "../../../data/interfaces";
 import { Match } from "../../../entities/Match";
 
 export class TeamFieldsAfterWinningToss implements IFilter{
