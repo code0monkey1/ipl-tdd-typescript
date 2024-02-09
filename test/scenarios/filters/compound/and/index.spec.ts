@@ -88,7 +88,7 @@ describe('filters', () => {
           // const createOrFilter = new Create
           const sut = createAnd(filters)
 
-          const expected = false
+          const expected = true
 
           //act
 
