@@ -1,7 +1,8 @@
 import { IFilter } from "../../../../src/data/interfaces/filters"
 import { Match } from "../../../../src/entities/Match"
+import { createMatch } from "../filter-matches-by-year/helper"
 
-class FieldsAfterWinningToss implements IFilter{
+class TeamFieldsAfterWinningToss implements IFilter{
 
   constructor(private match:Match){}
   isValid(): boolean {
@@ -20,8 +21,8 @@ describe('fielded-after-winning-toss', () => {
       it("win toss and choose to field",()=>{
             
         //arrange
-        const filterYear
-        const sut = new FieldsAfterWinningToss(match)
+        const match = createMatch({})
+        const sut = new TeamFieldsAfterWinningToss(match)
 
             //act
             //assert
