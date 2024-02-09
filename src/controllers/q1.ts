@@ -4,7 +4,7 @@ import { Match } from "../entities/Match";
 import { And } from "../scenarios/filters/and";
 import { MatchTeamFieldsAfterWinningToss } from "../scenarios/filters/fields-after-winning-toss";
 import { MatchPlayedInYear } from "../scenarios/filters/match-played-in-year";
-import { IUniqueTossWinningTeams, UniqueTossWinningTeams } from "../scenarios/unique-toss-winning-team-names";
+import { IUniqueTossWinningTeams } from "../scenarios/unique-toss-winning-team-names";
 
 
 export class TopNTeamsThatElectedToFieldFirstAfterWinningTossInYear{
@@ -32,7 +32,7 @@ export class TopNTeamsThatElectedToFieldFirstAfterWinningTossInYear{
                 return acc
               },[] as Match[])
 
-             const topNWinningTeams =this.topWiningTeams.execute(matches)
+             const topNWinningTeams = this.topWiningTeams.execute(filteredMatches)
    
              return topNWinningTeams
 
