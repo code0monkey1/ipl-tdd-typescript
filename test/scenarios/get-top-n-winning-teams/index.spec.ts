@@ -1,7 +1,3 @@
-import { IRepo } from "../../../src/data/interfaces";
-import { Match } from "../../../src/entities/Match";
-import { ITeamWinCount, TeamWinCount } from '../../../src/scenarios/team-win-count/index';
-
 
 describe('top-n-winning-teams', () => {
      
