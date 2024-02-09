@@ -6,6 +6,7 @@ export class TopNWinningTeams{
    constructor(
       private topN:number, 
       private uniqueTossWinningTeams:IUniqueTossWinningTeams,
+      private mappedTeamScores :IMappedTeamScores,
       private sortedTeamScores:ISortedTeamScores,
       private topNTeams:ITopNTeams
       ){}
@@ -17,16 +18,21 @@ export class TopNWinningTeams{
          const map = new Map<string,number>
 
          for(let name of uniqueTeamNames){
-             
-           let count = map.get(name) || 1;
 
-           map.set(name, count + 1);
+            const tot= matches.reduce((tot,match)=>{ 
+
+               if(match.getWinningTeam()==name) tot+=1
+               
+               return tot
+         
+            },0)
+             
+           map.set(name,tot);
 
          }
 
-         const sortedMap = new Map(
-                     Array.from(map.entries())
-            .sort((a, b) => b[1] - a[1])
+         const sortedMap = new Map( Array.from(map.entries())
+                                       .sort((a, b) => b[1] - a[1])
          );
          
         return Array.from(sortedMap.entries()).slice(0, this.topN);
@@ -35,6 +41,15 @@ export class TopNWinningTeams{
      
 }
 
+class MappedTeamScores implements IMappedTeamScores{
+   execute(teamNames: string[], matches: Match[]): Map<string, number> {
+      throw new Error("Method not implemented.");
+   }
+   
+}
+interface IMappedTeamScores{
+   execute(teamNames:string[],matches:Match[]):Map<string,number>
+}
 interface ISortedTeamScores{
    sort(uniqueTeamNames:string[],matches:Match[]):Map<string,number>
 }
