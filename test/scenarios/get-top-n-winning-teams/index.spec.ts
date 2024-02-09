@@ -70,11 +70,6 @@ describe('top-n-winning-teams', () => {
      
    })
    
-   
-   
-   
-    
-    
     
     
 })
