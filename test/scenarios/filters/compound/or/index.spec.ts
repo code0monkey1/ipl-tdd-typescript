@@ -16,14 +16,17 @@ describe('or', () => {
   describe('isValid', () => {
 
 
-    it('meets one criteria',()=>{
-         
-          
+    it('meets at least one criteria',()=>{
+        
          //arrange
           
          const match = createMatch({season:"2017"})
 
-         const filters= [createFilterMatchByYear(match,"2017"),createFilterMatchByYear(match,"2016")]
+         const filters= [
+           createFilterMatchByYear(match,"2017"),
+           createFilterMatchByYear(match,"2016"),
+           createFilterMatchByYear(match,"2018")
+        ]
 
          const expected= true
 
@@ -41,7 +44,29 @@ describe('or', () => {
 
     })
 
-    it.todo('meets no criteria')
+    it('meets no criteria',()=>{
+         
+         //arrange
+          
+         const match = createMatch({season:"2017"})
+
+         const filters= [createFilterMatchByYear(match,"2015"),createFilterMatchByYear(match,"2016")]
+
+         const expected= false
+
+         const sut = new Or(filters)
+
+
+         //act
+
+         const actual =sut.isValid()
+
+
+         //assert
+
+         expect(actual).toBe(expected)
+
+    })
 
 
 
