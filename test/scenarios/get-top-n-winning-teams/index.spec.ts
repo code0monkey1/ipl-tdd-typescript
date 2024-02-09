@@ -35,7 +35,10 @@ interface ISortedTeamScores{
    sort(uniqueTeamNames:string[],)
 }
 
-export class SortedTeamScores{
+export class SortedTeamScores implements ISortedTeamScores{
+   sort(uniqueTeamNames: string[]) {
+      throw new Error("Method not implemented.");
+   }
 
 }
 
