@@ -43,7 +43,24 @@ export class TopNWinningTeams{
 
 class MappedTeamScores implements IMappedTeamScores{
    execute(teamNames: string[], matches: Match[]): Map<string, number> {
-      throw new Error("Method not implemented.");
+
+       const team_wins = new Map<string,number>
+
+         for(let name of teamNames){
+
+            const tot= matches.reduce((tot,match)=>{ 
+
+               if(match.getWinningTeam()==name) tot+=1
+               
+               return tot
+         
+            },0)
+             
+           team_wins.set(name,tot);
+
+         }
+
+         return team_wins
    }
    
 }
