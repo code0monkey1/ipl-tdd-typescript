@@ -2,9 +2,12 @@ import { IRepo } from "../data/interfaces";
 import { Match } from "../entities/Match";
 
 
-class TopNTeamsThatElectedToFieldFirstAfterWinningTossInYear{
+export class TopNTeamsThatElectedToFieldFirstAfterWinningTossInYear{
 
-          constructor(private matchesRepo:IRepo<Match>,year:string,n:number){
+          constructor(
+            private matchesRepo:IRepo<Match>,
+            private filterYear:string,
+            private topN:number){
             
             // filter matches by year , field first
 
@@ -13,10 +16,8 @@ class TopNTeamsThatElectedToFieldFirstAfterWinningTossInYear{
 
             // among the names , choose the ones that have top n wins
                 // which will be 
+                
 
-
-            
-           
           }
   
 }
