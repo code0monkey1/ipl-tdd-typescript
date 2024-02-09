@@ -6,7 +6,7 @@ class TeamFieldsAfterWinningToss implements IFilter{
 
   constructor(private match:Match){}
   isValid(): boolean {
-    throw new Error("Method not implemented.")
+    return this.match.getTossDecision()==='field'
   }
   
 }
@@ -23,19 +23,33 @@ describe('fielded-after-winning-toss', () => {
         //arrange
         const match = createMatch({tossDecision:'field'})
         const sut = new TeamFieldsAfterWinningToss(match)
-
+        const expected = true
         //act
 
         const actual= sut.isValid()
         
         //assert
-        expect(actual).toBeTruthy()
+        expect(actual).toBe(expected)
 
           
       })
              
       
-      it.todo('chose to bat')
+      it('chose to bat',()=>{
+        
+                    
+        //arrange
+        const match = createMatch({tossDecision:'bat'})
+        const sut = new TeamFieldsAfterWinningToss(match)
+        const expected=false
+        //act
+
+        const actual= sut.isValid()
+        
+        //assert
+        expect(actual).toBe(expected)
+
+      })
   
   
 

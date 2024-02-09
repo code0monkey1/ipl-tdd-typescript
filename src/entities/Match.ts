@@ -46,4 +46,8 @@ export class Match {
       
        return this.season
   }
+
+  public getTossDecision(){
+    return this.tossDecision
+  }
 }
