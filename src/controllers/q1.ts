@@ -32,10 +32,8 @@ export class TopNTeamsThatElectedToFieldFirstAfterWinningTossInYear{
                 return acc
               },[] as Match[])
 
-             const topNWinningTeams = this.topWiningTeams.execute(filteredMatches)
+             return this.topWiningTeams.execute(filteredMatches)
    
-             return topNWinningTeams
-
           }
   
 }
