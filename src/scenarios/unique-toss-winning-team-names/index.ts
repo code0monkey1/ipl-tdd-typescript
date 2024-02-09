@@ -1,8 +1,11 @@
-import { Match } from "../../entities/Match"
+import { Match } from "../../entities/Match";
 
- export  class UniqueTossWinningTeamNames{
+export interface IUniqueTossWinningTeams{
+  getNames(matches:Match[]):Set<string>
+}
+ export  class UniqueTossWinningTeams implements IUniqueTossWinningTeams{
 
-       getTeamNames( matches:Match[]):Set<string>{
+       getNames( matches:Match[]):Set<string>{
         
           const tossWinningTeamNames = new Set<string>
           

@@ -1,3 +1,26 @@
+import { Match } from "../../../src/entities/Match"
+import { IUniqueTossWinningTeams } from "../../../src/scenarios/unique-toss-winning-team-names"
+
+class TopNWinningTeams{
+
+   constructor(private topN:number, private uniqueTossWinningTeams:IUniqueTossWinningTeams){}
+
+   execute(matches:Match[]){
+
+         const uniqueTeamNames  =  this.uniqueTossWinningTeams.getNames(matches)
+
+         const map = new Map<string,number>
+
+         for(let name of uniqueTeamNames){
+             
+           map.set(name,1)
+            
+         }
+
+          
+   }
+     
+}
 
 describe('top-n-winning-teams', () => {
      

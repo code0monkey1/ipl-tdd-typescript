@@ -1,4 +1,4 @@
-import { UniqueTossWinningTeamNames } from '../../../../src/scenarios/unique-toss-winning-team-names/index';
+import { UniqueTossWinningTeams } from '../../../../src/scenarios/unique-toss-winning-team-names/index';
 import { createMatch } from "../filter-matches-by-year/helper";
 
 
@@ -17,13 +17,13 @@ describe('unique-team-names-that-won-toss', () => {
          createMatch({tossWinner:'a'}),
          createMatch({tossWinner:'a'})]
 
-         const sut = new UniqueTossWinningTeamNames()
+         const sut = new UniqueTossWinningTeams()
 
          const expected =new Set('a')
          
          //act 
 
-         const actual = sut.getTeamNames(matches)
+         const actual = sut.getNames(matches)
  
 
          //assert
@@ -45,13 +45,13 @@ describe('unique-team-names-that-won-toss', () => {
          createMatch({tossWinner:'b'}),
          createMatch({tossWinner:'b'})]
 
-         const sut = new UniqueTossWinningTeamNames()
+         const sut = new UniqueTossWinningTeams()
 
          const expected =new Set(['a','b'])
 
          //act 
 
-         const actual = sut.getTeamNames(matches)
+         const actual = sut.getNames(matches)
  
 
          //assert
