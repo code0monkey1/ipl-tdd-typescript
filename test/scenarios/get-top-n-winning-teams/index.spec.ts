@@ -4,7 +4,7 @@ import { IUniqueTossWinningTeams } from "../../../src/scenarios/unique-toss-winn
 export class TopNWinningTeams{
 
    constructor(private topN:number, 
-      private uniqueTossWinningTeams:IUniqueTossWinningTeams,){}
+      private uniqueTossWinningTeams:IUniqueTossWinningTeams,sortedTeamScores:ISortedTeamScores){}
 
    execute(matches:Match[]):[string, number][]{
 
@@ -32,12 +32,27 @@ export class TopNWinningTeams{
 }
 
 interface ISortedTeamScores{
-   sort(uniqueTeamNames:string[],)
+   sort(uniqueTeamNames:string[],matches:Match[]):Map<string,number>
 }
 
 export class SortedTeamScores implements ISortedTeamScores{
-   sort(uniqueTeamNames: string[]) {
-      throw new Error("Method not implemented.");
+   sort(uniqueTeamNames: string[],matches:Match[]) {
+     const map = new Map<string,number>
+
+         for(let name of uniqueTeamNames){
+             
+           let count = map.get(name) || 1;
+
+           map.set(name, count + 1);
+
+         }
+
+         const sortedMap = new Map(
+                     Array.from(map.entries())
+            .sort((a, b) => b[1] - a[1])
+         );
+
+    return map
    }
 
 }
