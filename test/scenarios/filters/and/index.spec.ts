@@ -3,8 +3,6 @@ import { createTeamFieldsAfterWinningToss } from "../fields-after-winning-toss/h
 import { createFilterMatchByYear, createMatch } from "../filter-matches-by-year/helper";
 import { createAnd } from './helper';
 
-
-
 describe('filters', () => {
    
   describe('and', () => {
