@@ -1,9 +1,8 @@
+import { Match } from "../../../../src/entities/Match"
 import { MatchTeamFieldsAfterWinningToss } from "../../../../src/scenarios/filters/fields-after-winning-toss"
-import { createMatch } from "../filter-matches-by-year/helper"
 
-  export const createMatchTeamFieldsAfterWinningToss=(tossDecision:string)=>{
+  export const createMatchTeamFieldsAfterWinningToss=(match:Match)=>{
           
-          const match = createMatch({tossDecision})
          return new MatchTeamFieldsAfterWinningToss(match)
 
     }

@@ -11,9 +11,9 @@ describe('filters', () => {
          
           //arrange
           
-          const match= createMatch({season:"2017"})
+          const match= createMatch({season:"2017",tossDecision:'field'})
 
-          const filters=[createFilterMatchByYear(match,"2017"),createMatchTeamFieldsAfterWinningToss('field')] 
+          const filters=[createFilterMatchByYear(match,"2017"),createMatchTeamFieldsAfterWinningToss(match)] 
 
           const sut = createAnd(filters)
 
@@ -32,10 +32,10 @@ describe('filters', () => {
       it('does not meet 1 filter criteria',()=>{
       //arrange
           
-          const match= createMatch({season:"2017"})
+          const match= createMatch({season:"2017",tossDecision:'bat'})
 
           const filters=[
-            createFilterMatchByYear(match,"2017"),createMatchTeamFieldsAfterWinningToss('bat')
+            createFilterMatchByYear(match,"2017"),createMatchTeamFieldsAfterWinningToss(match)
           ] 
 
           const sut =createAnd(filters)
@@ -56,10 +56,10 @@ describe('filters', () => {
       it('does not meet any filter criteria',()=>{
       //arrange
           
-          const match= createMatch({season:"2016"})
+          const match= createMatch({season:"2016",tossDecision:"bat"})
 
           const filters=[
-            createFilterMatchByYear(match,"2017"),createMatchTeamFieldsAfterWinningToss('bat')
+            createFilterMatchByYear(match,"2017"),createMatchTeamFieldsAfterWinningToss(match)
           ] 
 
           const sut = createAnd(filters)
@@ -79,11 +79,10 @@ describe('filters', () => {
       it('does meet 1 required criteria , and meets at least 1 of many optional criteria',()=>{
          
           //arrange
-          const match= createMatch({season:"2016",tossDecision:""})
-
+          const match= createMatch({season:"2016",tossDecision:"bat"})
 
           const filters=[
-            createFilterMatchByYear(match,"2017"),createMatchTeamFieldsAfterWinningToss('bat')
+            createFilterMatchByYear(match,"2017"),createMatchTeamFieldsAfterWinningToss(match)
           ] 
           
           // const createOrFilter = new Create

@@ -1,3 +1,5 @@
+import { createMatch } from "../filter-matches-by-year/helper"
+import { createMatchTeamFieldsAfterWinningToss } from "./helper"
 
 
 describe('fields-after-winning-toss', () => {
@@ -9,8 +11,9 @@ describe('fields-after-winning-toss', () => {
       it("chose to field",()=>{
             
         //arrange
-
-        const sut = createTeamFieldsAfterWinningToss('field')
+       const match = createMatch({tossDecision:'field'})
+  
+        const sut = createMatchTeamFieldsAfterWinningToss(match)
         const expected = true
         //act
 
@@ -27,7 +30,8 @@ describe('fields-after-winning-toss', () => {
         
                     
         //arrange
-        const sut =createTeamFieldsAfterWinningToss('bat')
+        const match = createMatch({tossDecision:"bat"})
+        const sut =createMatchTeamFieldsAfterWinningToss(match)
         const expected=false
         //act
 
