@@ -1,5 +1,3 @@
-import { IRepo } from "../../../src/data/interfaces";
-import { Match } from "../../../src/entities/Match";
 import { createMatchWithWinnersArray, createMatchesRepo, createTeamWins } from "./helper";
 
 
@@ -46,7 +44,7 @@ describe('given-team-get-score', () => {
             
             const matchWinners = createMatchWithWinnersArray([winningTeam])
         
-            const matchRepo:IRepo<Match> = createMatchesRepo(matchWinners)
+            const matchRepo = createMatchesRepo(matchWinners)
    
             const sut = createTeamWins(matchRepo)
    
@@ -77,9 +75,9 @@ describe('given-team-get-score', () => {
            
                   //arrange
 
-                  const matchWinners:Match[] =createMatchWithWinnersArray(matches)
+                  const matchWinners =createMatchWithWinnersArray(matches)
          
-                  const matchRepo:IRepo<Match> =createMatchesRepo(matchWinners)
+                  const matchRepo=createMatchesRepo(matchWinners)
          
                   const sut = createTeamWins(matchRepo)
          

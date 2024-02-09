@@ -7,8 +7,6 @@ export interface ITeamWins {
       
 }
 
-
-
 export class TeamWins implements ITeamWins{
 
   constructor(private matchRepo:IRepo<Match>){}
