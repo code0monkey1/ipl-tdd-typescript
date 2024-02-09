@@ -12,7 +12,8 @@ export class TopNTeamsThatElectedToFieldFirstAfterWinningTossInYear{
           constructor(
             private matchesRepo:IRepo<Match>,
             private filterYear:string,
-            private topWiningTeams:TopNWinningTeams){}
+            private topWiningTeams:TopNWinningTeams
+            ){}
 
           execute(){
                 
@@ -31,23 +32,9 @@ export class TopNTeamsThatElectedToFieldFirstAfterWinningTossInYear{
                 return acc
               },[] as Match[])
 
-            // get all unique team names that chose to field first
-            // which will an array of names
-            // const topNWinningTeams = new TopNWinningTeams(
-            //   this.topN,
-            //   new UniqueTossWinningTeams(),
-            //   new MappedTeamWins(),
-            //   new SortedTeamWins(),
-            //   new TopNTeamWins())
-
-              // among the names , choose the ones that have top n wins
-                  // which will be 
-
              const topNWinningTeams =this.topWiningTeams.execute(matches)
-              
-              const teamWinCount =  topNWinningTeams
-              
-              return teamWinCount
+   
+             return topNWinningTeams
 
           }
   
