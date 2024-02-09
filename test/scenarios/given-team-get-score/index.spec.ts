@@ -1,24 +1,8 @@
-import { IRepo } from "../../../src/data/interfaces"
-import { Match, TMatchProps } from "../../../src/entities/Match"
-import { ITeamWins } from "../../../src/scenarios/given-team-get-score"
+import { IRepo } from "../../../src/data/interfaces";
+import { Match } from "../../../src/entities/Match";
+import { createMatchWithWinnersArray, createMatchesRepo, createTeamWins } from "./helper";
 
 
-class TeamWins implements ITeamWins{
-
-  constructor(private matchRepo:IRepo<Match>){}
-  
-  getCount(team: string): number {
-
-      return this.matchRepo.data.reduce((tot,match)=>{ 
-
-          if(match.getWinningTeam()==team) tot+=1
-          
-          return tot
-    
-      },0)
-  }
-  
-}
 
 describe('given-team-get-score', () => {
    
@@ -117,50 +101,5 @@ describe('given-team-get-score', () => {
   
 })
 
-const createMatchWithWinner=(winner:string)=>{
-    
-     const matchAProps:TMatchProps={
-       
-                    matchId: "",
-                    season: "",
-                    city: "",
-                    date: "",
-                    team1: "",
-                    team2: "",
-                    tossWinner: "a",
-                    tossDecision: "a",
-                    result: "normal",
-                    winner
-                  }
-
-    return new Match(matchAProps)
-
-}
-
-const createMatchWithWinnersArray=(winners:string[]):Match[]=>{
-     
-     const matches:Match[] =[]
-
-     winners.forEach( w => matches.push(createMatchWithWinner(w)))
-
-     return matches
-  
-}
-
-const createMatchesRepo=(matches:Match[])=>{
-
-       
-    const mockMatchRepo:IRepo<Match> ={
-                    data: matches
-                  }
-    
-    return mockMatchRepo
-
-}
 
 
-const createTeamWins=(matchRepo:IRepo<Match>)=>{
-        
-      return new TeamWins(matchRepo)
-       
-}
