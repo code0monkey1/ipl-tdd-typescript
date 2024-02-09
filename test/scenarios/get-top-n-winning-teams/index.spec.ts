@@ -35,6 +35,17 @@ interface ISortedTeamScores{
    sort(uniqueTeamNames:string[],matches:Match[]):Map<string,number>
 }
 
+interface ITopNTeams{
+   topN(map:Map<string,number>):[string,number][]
+}
+
+class TopNTeams implements ITopNTeams{
+   topN(map: Map<string, number>): [string, number][] {
+      throw new Error("Method not implemented.");
+   }
+   
+}
+
 export class SortedTeamScores implements ISortedTeamScores{
    sort(uniqueTeamNames: string[],matches:Match[]) {
      const map = new Map<string,number>
@@ -47,15 +58,12 @@ export class SortedTeamScores implements ISortedTeamScores{
 
          }
 
-         const sortedMap = new Map(
-                     Array.from(map.entries())
-            .sort((a, b) => b[1] - a[1])
-         );
-
     return map
    }
 
 }
+
+
 
 describe('top-n-winning-teams', () => {
      
