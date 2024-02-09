@@ -75,3 +75,7 @@ describe('or', () => {
   
   
 })
+export const createOrFilter=(filters:IFilter[])=>{
+
+    return new Or(filters)
+}
