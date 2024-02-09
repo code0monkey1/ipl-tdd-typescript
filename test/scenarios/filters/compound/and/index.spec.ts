@@ -1,6 +1,6 @@
 
-import { createTeamFieldsAfterWinningToss } from "../fields-after-winning-toss/helper";
-import { createFilterMatchByYear, createMatch } from "../filter-matches-by-year/helper";
+import { createTeamFieldsAfterWinningToss } from "../../fields-after-winning-toss/helper";
+import { createFilterMatchByYear, createMatch } from "../../filter-matches-by-year/helper";
 import { createAnd } from './helper';
 
 describe('filters', () => {
@@ -75,6 +75,8 @@ describe('filters', () => {
           expect(actual).toBe(expected)
     
       })
+
+      it.todo('does meet 1 required criteria , and meets at least 1 of many optional criteria')
 
   })
   
