@@ -49,14 +49,14 @@ export class MappedTeamWins implements IMappedTeamWins{
    }
    
 }
-interface IMappedTeamWins{
+export interface IMappedTeamWins{
    execute(teamNames:Set<string>,matches:Match[]):Map<string,number>
 }
-interface ISortedTeamWins{
+export interface ISortedTeamWins{
    sort(team_wins:Map<string,number>):Map<string,number>
 }
 
-interface ITopNTeamWins{
+export interface ITopNTeamWins{
    topN(sortedTeamWins:Map<string,number>,topN:number):[string,number][]
 }
 
