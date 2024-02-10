@@ -29,14 +29,14 @@ export class TopNWinningTeams{
 
    constructor(
       private topN:number, 
-      private teamWinCountMap:ITossWinningTeamWinCount,
+      private tossWinningTeamWinCount:ITossWinningTeamWinCount,
       private sortedTeamWins:ISortedTeamWinsMap,
       private topNTeamWins:ITopNTeams
       ){}
 
    execute(matches:Match[]):[string, number][]{
 
-         const team_winsCount = this.teamWinCountMap.execute(matches)
+         const team_winsCount = this.tossWinningTeamWinCount.execute(matches)
          
          const sorted_team_wins = this.sortedTeamWins.sort(team_winsCount)
         
