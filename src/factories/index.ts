@@ -10,7 +10,7 @@ export const createTopWinningTeams=(topN:number)=>{
   const sortedTeamWins = new SortedTeamWins()
 
 
-   return  new TopNWinningTeams( topN,teamWinCountMap,sortedTeamWins,topNTeamWins)
+   return  new TopNWinningTeams(topN,teamWinCountMap,sortedTeamWins,topNTeamWins)
 
 }
 
@@ -25,7 +25,7 @@ export const createTeamWinCountMap =()=>{
 
 export const createMatchFilters=(year:string)=>{
 
-       return  new FilterMatchByTeamChoosingToField( 
-        new FilterMatchByYear(year)
-        )
+    const filterMatchByYear = new FilterMatchByYear(year)
+
+       return  new FilterMatchByTeamChoosingToField(filterMatchByYear)
 }
