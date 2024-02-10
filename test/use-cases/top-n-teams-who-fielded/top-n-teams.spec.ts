@@ -24,7 +24,7 @@ describe('top-n-teams', () => {
                 
                 //act
 
-                const actual = sut.topN(new Map([['a',1]]),topN)
+                const actual = sut.topN(new Map([]),topN)
 
                 //assert
                 expect(actual).toStrictEqual(expected)
