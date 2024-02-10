@@ -28,7 +28,6 @@ export class MapTeamWinCount implements IMappedTeamWins{
    
 }
 
-
 describe.only('map-team-win-count', () => {
 
 
@@ -36,6 +35,26 @@ describe.only('map-team-win-count', () => {
        
               
               describe('single team', () => {
+
+                   
+                  it('a team has 0 wins',()=>{
+                      
+                        //arrange 
+                        const sut = new MapTeamWinCount()
+
+                        const teamNames =new Set(['a'])
+
+                        const matches= [createMatch({winner:'b'})]
+                        
+                        const expected = new Map([['a',0]])
+
+                        //act
+                        const actual =sut.execute(teamNames,matches)
+                         
+                        //assert
+                        expect(actual).toStrictEqual(expected)
+
+                  })
 
                   it('a team has 1 win count',()=>{
 
@@ -58,6 +77,31 @@ describe.only('map-team-win-count', () => {
                   })
                 
               })
+
+              describe('multiple teams', () => {
+                    
+                    describe('each team has 1 count', () => {
+
+                              //arrange 
+                        const sut = new MapTeamWinCount()
+
+                        const teamNames =new Set(['a','b'])
+
+                        const matches= [createMatch({winner:'a'}),
+                                          createMatch({winner:'b'})]
+                        
+                        const expected = new Map([['a',1],['b',1]])
+
+                        //act
+                        const actual =sut.execute(teamNames,matches)
+                         
+                        //assert
+                        expect(actual).toStrictEqual(expected)
+                      
+                    })
+                    
+              })
+              
               
            
       })
