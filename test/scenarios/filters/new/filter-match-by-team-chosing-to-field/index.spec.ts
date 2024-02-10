@@ -24,23 +24,23 @@ describe('filter-match-by-team-choosing-to-field', () => {
      
     it('has 1 match who choose to field ',()=>{
         
-      //arrange
-      const year='2017'
-      
+      //arrange   
     
-      const filter = createFilter()
+      const f = createFilter()
 
-      const sut = createFilterMatchByTeamChoosingToField(filter)
+      const sut = createFilterMatchByTeamChoosingToField(f)
        
       const matches = [createMatch({tossDecision:"field"})]
 
       //act
 
-      sut.filter(matches)
+      const actual = sut.filter(matches)
 
       //assert
 
-      expect(filter.filter).toHaveBeenCalledWith(matches)
+      expect(f.filter).toHaveBeenCalledWith(matches)
+
+      expect(actual).toStrictEqual(matches)
 
     })
 
@@ -54,7 +54,9 @@ const createFilter=() =>{
 
     return {
       
-        filter: jest.fn()
+        filter: jest.fn((arr:Match[])=>{
+           return arr
+        })
       
     }
 
