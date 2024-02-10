@@ -1,24 +1,26 @@
-import { MappedTeamWins, SortedTeamWins, TopNTeamWins, TopNWinningTeams } from "../controllers/q1";
+import { MapTeamWinCount, SortedTeamWins, TeamWinCountMap, TopNTeamWins, TopNWinningTeams } from "../controllers/q1";
 import { FilterMatchByTeamChoosingToField, FilterMatchByYear } from "../scenarios/filters/new";
 import { UniqueTossWinningTeams } from "../scenarios/unique-toss-winning-team-names";
 
 
-
 export const createTopWinningTeams=(topN:number)=>{
-
-   const uniqueTossWinningTeams= new UniqueTossWinningTeams()
-   const mappedTeamWins=new MappedTeamWins()
-   const sortedTeamWins = new SortedTeamWins()
-   const topNTeamWins =  new TopNTeamWins()
-
-   return  new TopNWinningTeams(
-                                topN,
-                                uniqueTossWinningTeams,
-                                mappedTeamWins,
-                                sortedTeamWins,
-                                topNTeamWins)
+ 
+  const topNTeamWins =  new TopNTeamWins()
+  const teamWinCountMap = createTeamWinCountMap()
+  const sortedTeamWins = new SortedTeamWins()
 
 
+   return  new TopNWinningTeams( topN,teamWinCountMap,sortedTeamWins,topNTeamWins)
+
+}
+
+export const createTeamWinCountMap =()=>{
+
+  const teamWinCountMap = new TeamWinCountMap(
+  new UniqueTossWinningTeams(),
+  new MapTeamWinCount())
+
+  return teamWinCountMap
 }
 
 export const createMatchFilters=(year:string)=>{
