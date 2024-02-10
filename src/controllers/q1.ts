@@ -111,6 +111,7 @@ export class TopNTeamWins implements ITopNTeamWins{
 }
 
 export class SortedTeamWins implements ISortedTeamWins{
+   
   sort(team_wins: Map<string, number>): Map<string, number> {
 
   return new Map( Array.from(team_wins.entries())
