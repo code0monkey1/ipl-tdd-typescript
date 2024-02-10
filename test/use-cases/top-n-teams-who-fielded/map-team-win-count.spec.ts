@@ -20,7 +20,7 @@ describe('map-team-win-count', () => {
 
                         const matches= [createMatch({winner:'b'})]
                         
-                        const expected = ['a',0]
+                        const expected = [['a',0]]
 
                         //act
                         const actual =sut.execute(teamNames,matches)
@@ -39,7 +39,7 @@ describe('map-team-win-count', () => {
 
                         const matches= [createMatch({winner:'a'})]
                         
-                        const expected = ['a',1]
+                        const expected = [['a',1]]
 
                         //act
                         const actual =sut.execute(teamNames,matches)
