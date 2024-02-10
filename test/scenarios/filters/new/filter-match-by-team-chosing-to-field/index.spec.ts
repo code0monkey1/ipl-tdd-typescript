@@ -8,7 +8,10 @@ class FilterMatchByTeamChoosingToField implements IFilter<Match>{
 
   constructor(private f:IFilter<Match>){}
   filter(arr: Match[]): Match[] {
-    throw new Error("Method not implemented.")
+    
+    const filteredMatches = this.f.filter(arr)
+
+    return filteredMatches.filter(m => m.getTossDecision()=='field')
   }
       
         
@@ -25,7 +28,8 @@ describe('filter-match-by-team-choosing-to-field', () => {
       const year='2017'
       
     
-   
+      const filter = createFilter()
+
       const sut = createFilterMatchByTeamChoosingToField(filter)
        
       const matches = [createMatch({tossDecision:"field"})]
@@ -35,6 +39,8 @@ describe('filter-match-by-team-choosing-to-field', () => {
       sut.filter(matches)
 
       //assert
+
+      expect(filter.filter).toHaveBeenCalledWith(matches)
 
     })
 
@@ -58,5 +64,5 @@ const createFilter=() =>{
 
 const createFilterMatchByTeamChoosingToField=(filter:IFilter<Match>)=>{
 
- return   new FilterMatchByTeamChoosingToField(filter)
+ return new FilterMatchByTeamChoosingToField(filter)
 }
