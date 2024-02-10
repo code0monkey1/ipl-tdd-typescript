@@ -2,6 +2,7 @@
 import { IRepo } from "../data/interfaces";
 import { Match } from "../entities/Match";
 import { IFilter } from "../scenarios/filters/new";
+
 import { IUniqueTossWinningTeams } from "../scenarios/unique-toss-winning-team-names";
 
 
@@ -41,15 +42,18 @@ export class TopNWinningTeams{
 
          const uniqueTeamNames  =  this.uniqueTossWinningTeams.getNames(matches)
 
-         const team_wins =this.mappedTeamWins.execute(uniqueTeamNames,matches)
+         const team_winsCount =this.mappedTeamWins.execute(uniqueTeamNames,matches)
          
-         const sorted_team_wins = this.sortedTeamWins.sort(team_wins)
+         const sorted_team_wins = this.sortedTeamWins.sort(team_winsCount)
         
-        const top_n_wins = this.topNTeamWins.topN(sorted_team_wins,this.topN)
+        return this.topNTeamWins.topN(sorted_team_wins,this.topN)
 
-        return top_n_wins
    }
      
+}
+
+export class TeamWinCount{
+   
 }
 
 export class MappedTeamWins implements IMappedTeamWins{
