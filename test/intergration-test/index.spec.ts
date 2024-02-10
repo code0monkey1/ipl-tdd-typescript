@@ -28,7 +28,35 @@ describe('top-teams-user-case', () => {
      
      describe('execute', () => {
 
-        
+         describe('matchFilter', () => {
+
+            describe('execute', () => {
+              it('gets the matches from the repo`s data attribute',()=>{
+                   
+                 //arrange
+                 expect(true).toBe(true)
+
+                 //act 
+
+                 //assert
+
+
+
+              })
+              
+            })
+            
+
+           
+         })
+         
+         describe('TopNTeams', () => {
+              describe('execute', () => {
+                  it.todo('gets the filtered matches')
+                })
+
+        })
+         
        
      })
      
