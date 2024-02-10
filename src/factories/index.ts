@@ -1,4 +1,4 @@
-import { MapTeamWinCount, SortedTeamWins, TeamWinCountMap, TopNTeams, TopNWinningTeams } from "../controllers/q1";
+import { MapTeamWins, SortedTeamWins, TeamWinCountMap, TopNTeams, TopNWinningTeams } from "../controllers/q1";
 import { FilterMatchByTeamChoosingToField, FilterMatchByYear } from "../scenarios/filters/new";
 import { UniqueTossWinningTeams } from "../scenarios/unique-toss-winning-team-names";
 
@@ -18,7 +18,7 @@ export const createTeamWinCountMap =()=>{
 
   const teamWinCountMap = new TeamWinCountMap(
   new UniqueTossWinningTeams(),
-  new MapTeamWinCount())
+  new MapTeamWins())
 
   return teamWinCountMap
 }

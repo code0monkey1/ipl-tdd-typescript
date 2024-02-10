@@ -1,5 +1,5 @@
-import { MapTeamWinCount, TopNTeams } from "../../../src/controllers/q1";
+import { MapTeamWins, TopNTeams } from "../../../src/controllers/q1";
 
-export const createMapTeamWinCount=()=>  new MapTeamWinCount()
+export const createMapTeamWinCount=()=>  new MapTeamWins()
 
 export const createTopNTeams =()=> new TopNTeams()

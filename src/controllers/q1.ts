@@ -56,7 +56,7 @@ export class TeamWinCount implements ITeamWinCount{
 
    constructor(
             private uniqueTossWinningTeams:IUniqueTossWinningTeams,
-            private mapTeamWins :IMappedTeamWins
+            private mapTeamWins :IMapTeamWins
    ){}
 
    execute(matches:Match[]):[string,number][]{
@@ -70,7 +70,7 @@ export class TeamWinCount implements ITeamWinCount{
    
 }
 
-export class MapTeamWinCount implements IMappedTeamWins{
+export class MapTeamWins implements IMapTeamWins{
    
    execute(teamNames: string[], matches: Match[]): [string,number][]{
 
@@ -94,7 +94,7 @@ export class MapTeamWinCount implements IMappedTeamWins{
     }
    
 }
-export interface IMappedTeamWins{
+export interface IMapTeamWins{
    execute(teamNames:string[],matches:Match[]):[string,number][]
 }
 export interface ISortedTeamWinsMap{
