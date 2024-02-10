@@ -123,5 +123,4 @@ export class SortedTeamWins implements ISortedTeamWinsMap{
      
   }
   
-
 }
