@@ -1,12 +1,5 @@
-import { ITopNTeams } from "../../../src/controllers/q1";
 
-export class TopNTeams implements ITopNTeams{
-   topN(sortedTeamWins: Map<string, number>,topN:number): [string, number][] {
-      
-      return Array.from(sortedTeamWins.entries()).slice(0, topN);
-   }
-   
-}
+import { createTopNTeams } from "./helper";
 
 
 describe('top-n-teams', () => {
@@ -18,13 +11,13 @@ describe('top-n-teams', () => {
 
                 //arrange
 
-                const sut = new TopNTeams()
+                const sut = createTopNTeams()
                 const topN = 2
                 const expected = [] as  [string,number] []
                 
                 //act
 
-                const actual = sut.topN(new Map([]),topN)
+                const actual = sut.topN([],topN)
 
                 //assert
                 expect(actual).toStrictEqual(expected)
@@ -35,13 +28,13 @@ describe('top-n-teams', () => {
 
                 //arrange
 
-                const sut = new TopNTeams()
+                const sut = createTopNTeams()
                 const topN = 2
                 const expected = [ ['a',1] ]
                 
                 //act
 
-                const actual = sut.topN(new Map([['a',1]]),topN)
+                const actual = sut.topN([['a',1]],topN)
 
                 //assert
                 expect(actual).toStrictEqual(expected)
@@ -54,13 +47,13 @@ describe('top-n-teams', () => {
                
               //arrange
 
-                const sut = new TopNTeams()
+                const sut = createTopNTeams()
                 const topN = 2
                 const expected = [ ['a',3], ['b',2]]
                 
                 //act
 
-                const actual = sut.topN(new Map([['a',3],['b',2],['c',1]]),topN)
+                const actual = sut.topN([['a',3],['b',2],['c',1]],topN)
 
                 //assert
                 expect(actual).toStrictEqual(expected)
@@ -74,13 +67,13 @@ describe('top-n-teams', () => {
           it('has 2 teams, we query top 2',()=>{
                 //arrange
 
-                const sut = new TopNTeams()
+                const sut = createTopNTeams()
                 const topN = 2
                 const expected = [ ['a',3], ['b',2]]
                 
                 //act
 
-                const actual = sut.topN(new Map([['a',3],['b',2]]),topN)
+                const actual = sut.topN([['a',3],['b',2]],topN)
 
                 //assert
                 expect(actual).toStrictEqual(expected)

@@ -2,7 +2,7 @@
 import { createMatch } from '../../scenarios/filters/filter-matches-by-year/helper';
 import { createMapTeamWinCount } from './helper';
 
-describe.only('map-team-win-count', () => {
+describe('map-team-win-count', () => {
 
 
       describe('execute', () => { 
@@ -20,7 +20,7 @@ describe.only('map-team-win-count', () => {
 
                         const matches= [createMatch({winner:'b'})]
                         
-                        const expected = new Map([['a',0]])
+                        const expected = ['a',0]
 
                         //act
                         const actual =sut.execute(teamNames,matches)
@@ -39,7 +39,7 @@ describe.only('map-team-win-count', () => {
 
                         const matches= [createMatch({winner:'a'})]
                         
-                        const expected = new Map([['a',1]])
+                        const expected = ['a',1]
 
                         //act
                         const actual =sut.execute(teamNames,matches)
@@ -64,7 +64,7 @@ describe.only('map-team-win-count', () => {
                         const matches= [createMatch({winner:'a'}),
                                           createMatch({winner:'b'})]
                         
-                        const expected = new Map([['a',1],['b',1]])
+                        const expected = [['a',1],['b',1]]
 
                         //act
                         const actual =sut.execute(teamNames,matches)

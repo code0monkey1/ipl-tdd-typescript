@@ -49,7 +49,7 @@ export class TopNWinningTeams{
 
 interface ITeamWinCountMap{
 
-  execute(matches:Match[]):Map<string,number>
+  execute(matches:Match[]):[string,number][]
 
 }
 export class TeamWinCountMap implements ITeamWinCountMap{
@@ -59,7 +59,7 @@ export class TeamWinCountMap implements ITeamWinCountMap{
             private mapTeamWins :IMappedTeamWins
    ){}
 
-   execute(matches:Match[]):Map<string,number>{
+   execute(matches:Match[]):[string,number][]{
 
          const uniqueTeamNames  =  this.uniqueTossWinningTeams.getNames(matches)
 
@@ -72,13 +72,13 @@ export class TeamWinCountMap implements ITeamWinCountMap{
 
 export class MapTeamWinCount implements IMappedTeamWins{
    
-   execute(teamNames: string[], matches: Match[]): Map<string, number> {
+   execute(teamNames: string[], matches: Match[]): [string,number][]{
 
          const team_wins = new Map<string,number>
 
          teamNames.forEach(t =>  team_wins.set(t,this.getTeamWinCount(t,matches))) 
             
-         return team_wins
+         return Array.from(team_wins.entries()).map(([key, value]) => [key, value]);
    }
 
     private getTeamWinCount(teamName:string,matches:Match[]){
@@ -95,30 +95,31 @@ export class MapTeamWinCount implements IMappedTeamWins{
    
 }
 export interface IMappedTeamWins{
-   execute(teamNames:string[],matches:Match[]):Map<string,number>
+   execute(teamNames:string[],matches:Match[]):[string,number][]
 }
 export interface ISortedTeamWinsMap{
-   sort(team_wins:Map<string,number>):Map<string,number>
+   sort(team_wins:[string,number][]):[string,number][]
 }
 
 export interface ITopNTeams{
-   topN(sortedTeamWins:Map<string,number>,topN:number):[string,number][]
+   topN(sortedTeamWins:[string,number][],topN:number):[string,number][]
 }
 
 export class TopNTeams implements ITopNTeams{
-   topN(sortedTeamWins: Map<string, number>,topN:number): [string, number][] {
+   topN(sortedTeamWins: [string, number][],topN:number): [string, number][] {
       
-      return Array.from(sortedTeamWins.entries()).slice(0, topN);
+      return sortedTeamWins.slice(0, topN);
    }
    
 }
 
 export class SortedTeamWins implements ISortedTeamWinsMap{
    
-  sort(team_wins: Map<string, number>): Map<string, number> {
+  sort(team_wins:[string,number][]):[string,number][] {
 
-  return new Map( Array.from(team_wins.entries())
-                                       .sort((a, b) => b[1] - a[1]))
+      team_wins.sort((a, b) => b[1] - a[1])
+
+      return team_wins
      
   }
   
