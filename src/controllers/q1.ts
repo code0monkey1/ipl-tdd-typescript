@@ -58,22 +58,24 @@ export class MappedTeamWins implements IMappedTeamWins{
 
        const team_wins = new Map<string,number>
 
-         for(let name of teamNames){
+         for(let t of teamNames)  
+             team_wins.set(t,this.getTeamWinCount(t,matches));
 
-            const tot= matches.reduce((tot,match)=>{ 
+         return team_wins
+   }
 
-               if(match.getWinningTeam()==name) tot+=1
+    private getTeamWinCount(teamName:string,matches:Match[]){
+
+     return matches.reduce((tot,match)=>{ 
+
+               if(match.getWinningTeam()==teamName) tot+=1
                
                return tot
          
             },0)
-             
-           team_wins.set(name,tot);
 
-         }
-
-         return team_wins
-   }
+  
+    }
    
 }
 export interface IMappedTeamWins{
