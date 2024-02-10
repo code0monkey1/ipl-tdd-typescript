@@ -10,7 +10,7 @@ export class TopTeamsUseCase{
           constructor(
             private matchesRepo:IRepo<Match>,
             private matchFilter:IFilter<Match>,
-            private topNWiningTeams:TopNWinningTeams
+            private topNTeams:TopNWinningTeams
             ){}
 
           execute(){
@@ -20,7 +20,7 @@ export class TopTeamsUseCase{
             // filter matches by year , and choose to field first
             const filteredMatches = this.matchFilter.execute(matches)
 
-            return this.topNWiningTeams.execute(filteredMatches)
+            return this.topNTeams.execute(filteredMatches)
    
           }
 }
@@ -45,6 +45,8 @@ export class TeamsSortedByWinCount implements ITeamsSortedByWinCount {
         }
 }
 
+
+
 export class TopNWinningTeams{
 
    constructor(
@@ -58,7 +60,7 @@ export class TopNWinningTeams{
          
          const sortedTeamsWithCount = this.teamsSortedByWinCount.execute(matches)
         
-         return this.topNTeamWins.topN(sortedTeamsWithCount,this.topN)
+         return this.topNTeamWins.execute(sortedTeamsWithCount,this.topN)
 
    }
      
@@ -121,11 +123,11 @@ export interface ISortedTeamWinsMap{
 }
 
 export interface ITopNTeams{
-   topN(sortedTeamWins:[string,number][],topN:number):[string,number][]
+   execute(sortedTeamWins:[string,number][],topN:number):[string,number][]
 }
 
 export class TopNTeams implements ITopNTeams{
-   topN(sortedTeamWins: [string, number][],topN:number): [string, number][] {
+   execute(sortedTeamWins: [string, number][],topN:number): [string, number][] {
       
       return sortedTeamWins.slice(0, topN);
    }

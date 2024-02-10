@@ -17,7 +17,7 @@ describe('top-n-teams', () => {
                 
                 //act
 
-                const actual = sut.topN([],topN)
+                const actual = sut.execute([],topN)
 
                 //assert
                 expect(actual).toStrictEqual(expected)
@@ -34,7 +34,7 @@ describe('top-n-teams', () => {
                 
                 //act
 
-                const actual = sut.topN([['a',1]],topN)
+                const actual = sut.execute([['a',1]],topN)
 
                 //assert
                 expect(actual).toStrictEqual(expected)
@@ -53,7 +53,7 @@ describe('top-n-teams', () => {
                 
                 //act
 
-                const actual = sut.topN([['a',3],['b',2],['c',1]],topN)
+                const actual = sut.execute([['a',3],['b',2],['c',1]],topN)
 
                 //assert
                 expect(actual).toStrictEqual(expected)
@@ -73,7 +73,7 @@ describe('top-n-teams', () => {
                 
                 //act
 
-                const actual = sut.topN([['a',3],['b',2]],topN)
+                const actual = sut.execute([['a',3],['b',2]],topN)
 
                 //assert
                 expect(actual).toStrictEqual(expected)
