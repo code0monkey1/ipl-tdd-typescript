@@ -82,7 +82,7 @@ describe('filter-match-by-year', () => {
 
             //arrange
             const year ='2017'
-            
+              
             const matches = [ 
               createMatch({season:"2017"}),
               createMatch({season:"2017"}),
@@ -92,7 +92,6 @@ describe('filter-match-by-year', () => {
 
             const expected = matches
             //act 
-            
 
             const actual =sut.filter(matches)
 
