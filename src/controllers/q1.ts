@@ -2,7 +2,6 @@
 import { IRepo } from "../data/interfaces";
 import { Match } from "../entities/Match";
 import { IFilter } from "../scenarios/filters/new";
-
 import { IUniqueTossWinningTeams } from "../scenarios/unique-toss-winning-team-names";
 
 
@@ -32,56 +31,66 @@ export class TopNWinningTeams{
 
    constructor(
       private topN:number, 
-      private uniqueTossWinningTeams:IUniqueTossWinningTeams,
-      private mappedTeamWins :IMappedTeamWins,
+      private teamWinCountMap:TeamWinCountMap,
       private sortedTeamWins:ISortedTeamWins,
       private topNTeamWins:ITopNTeamWins
       ){}
 
    execute(matches:Match[]):[string, number][]{
 
-         const uniqueTeamNames  =  this.uniqueTossWinningTeams.getNames(matches)
-
-         const team_winsCount =this.mappedTeamWins.execute(uniqueTeamNames,matches)
+         const team_winsCount = this.teamWinCountMap.execute(matches)
          
          const sorted_team_wins = this.sortedTeamWins.sort(team_winsCount)
         
-        return this.topNTeamWins.topN(sorted_team_wins,this.topN)
+         return this.topNTeamWins.topN(sorted_team_wins,this.topN)
 
    }
      
 }
 
-export class TeamWinCount{
+export class TeamWinCountMap{
+
+   constructor(
+            private uniqueTossWinningTeams:IUniqueTossWinningTeams,
+            private mappedTeamWins :IMappedTeamWins
+   ){}
+
+   execute(matches:Match[]):Map<string,number>{
+
+         const uniqueTeamNames  =  this.uniqueTossWinningTeams.getNames(matches)
+
+         const team_winsCount =this.mappedTeamWins.execute(uniqueTeamNames,matches)
+
+         return team_winsCount
+   }
    
 }
 
-export class MappedTeamWins implements IMappedTeamWins{
+// export class MappedTeamWinCount implements IMappedTeamWins{
    
-   execute(teamNames: Set<string>, matches: Match[]): Map<string, number> {
+//    execute(teamNames: Set<string>, matches: Match[]): Map<string, number> {
 
-       const team_wins = new Map<string,number>
+//          const team_wins = new Map<string,number>
 
-         for(let t of teamNames)  
-             team_wins.set(t,this.getTeamWinCount(t,matches));
+//          teamNames.forEach(t =>  team_wins.set(t,this.getTeamWinCount(t,matches))) 
+            
+//          return team_wins
+//    }
 
-         return team_wins
-   }
+//     private getTeamWinCount(teamName:string,matches:Match[]){
 
-    private getTeamWinCount(teamName:string,matches:Match[]){
+//      return matches.reduce((tot,match)=>{ 
 
-     return matches.reduce((tot,match)=>{ 
-
-               if(match.getWinningTeam()==teamName) tot+=1
+//                if(match.getWinningTeam()==teamName) tot+=1
                
-               return tot
+//                return tot
          
-            },0)
+//             },0)
 
   
-    }
+//     }
    
-}
+// }
 export interface IMappedTeamWins{
    execute(teamNames:Set<string>,matches:Match[]):Map<string,number>
 }
