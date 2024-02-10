@@ -5,7 +5,7 @@ import { IFilter } from "../scenarios/filters/new";
 import { IUniqueTossWinningTeams } from "../scenarios/unique-toss-winning-team-names";
 
 
-export class TopNTeamsThatElectedToFieldFirstAfterWinningTossInYear{
+export class TopTeamsUseCase{
 
           constructor(
             private matchesRepo:IRepo<Match>,
