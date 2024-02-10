@@ -23,9 +23,7 @@ export class TopTeamsUseCase{
             return this.topNWiningTeams.execute(filteredMatches)
    
           }
-  
 }
-
 
 export class TopNWinningTeams{
 
@@ -48,7 +46,12 @@ export class TopNWinningTeams{
      
 }
 
-export class TeamWinCountMap{
+interface ITeamWinCountMap{
+
+  execute(matches:Match[]):Map<string,number>
+
+}
+export class TeamWinCountMap implements ITeamWinCountMap{
 
    constructor(
             private uniqueTossWinningTeams:IUniqueTossWinningTeams,
