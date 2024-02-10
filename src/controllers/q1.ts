@@ -33,7 +33,7 @@ export class TopNWinningTeams{
       private topN:number, 
       private teamWinCountMap:TeamWinCountMap,
       private sortedTeamWins:ISortedTeamWins,
-      private topNTeamWins:ITopNTeamWins
+      private topNTeamWins:ITopNTeams
       ){}
 
    execute(matches:Match[]):[string, number][]{
@@ -98,11 +98,11 @@ export interface ISortedTeamWins{
    sort(team_wins:Map<string,number>):Map<string,number>
 }
 
-export interface ITopNTeamWins{
+export interface ITopNTeams{
    topN(sortedTeamWins:Map<string,number>,topN:number):[string,number][]
 }
 
-export class TopNTeamWins implements ITopNTeamWins{
+export class TopNTeams implements ITopNTeams{
    topN(sortedTeamWins: Map<string, number>,topN:number): [string, number][] {
       
       return Array.from(sortedTeamWins.entries()).slice(0, topN);
