@@ -72,7 +72,34 @@ describe('filter-match-by-year', () => {
 
             expect(actual).toStrictEqual(expected)
 
+          })
+          
+        })
 
+        describe('has all matches of given year', () => {
+
+          it('will return all matches ',()=>{
+
+            //arrange
+            const year ='2017'
+            
+            const matches = [ 
+              createMatch({season:"2017"}),
+              createMatch({season:"2017"}),
+              createMatch({season:"2017"}) ]
+              
+            const sut = new FilterMatchByYear(year)
+
+            const expected = matches
+            //act 
+            
+
+            const actual =sut.filter(matches)
+
+
+            //assert
+
+            expect(actual).toStrictEqual(expected)
 
           })
           
