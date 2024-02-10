@@ -29,7 +29,7 @@ export class MapTeamWinCount implements IMappedTeamWins{
 }
 
 
-describe('map-team-win-count', () => {
+describe.only('map-team-win-count', () => {
 
 
       describe('execute', () => { 
@@ -46,15 +46,13 @@ describe('map-team-win-count', () => {
 
                         const matches= [createMatch({winner:'a'})]
                         
-                        const expected =['a']
+                        const expected = new Map([['a',1]])
 
                         //act
                         const actual =sut.execute(teamNames,matches)
-
-
                          
                         //assert
-
+                        expect(actual).toStrictEqual(expected)
 
                         
                   })
