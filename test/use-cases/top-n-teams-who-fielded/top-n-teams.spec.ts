@@ -56,11 +56,11 @@ describe('top-n-teams', () => {
 
                 const sut = new TopNTeams()
                 const topN = 2
-                const expected = [ ['a',3], ['c',2]]
+                const expected = [ ['a',3], ['b',2]]
                 
                 //act
 
-                const actual = sut.topN(new Map([['a',3],['b',1],['c',2]]),topN)
+                const actual = sut.topN(new Map([['a',3],['b',2],['c',1]]),topN)
 
                 //assert
                 expect(actual).toStrictEqual(expected)
@@ -71,13 +71,20 @@ describe('top-n-teams', () => {
 
           describe('has teams equal to n', () => {
 
-          it.todo('has 0 teams')
-          
-        })
+          it('has 2 teams, we query top 2',()=>{
+                //arrange
 
-        describe('has teams equal to n', () => {
+                const sut = new TopNTeams()
+                const topN = 2
+                const expected = [ ['a',3], ['b',2]]
+                
+                //act
 
-          it.todo('has 0 teams')
+                const actual = sut.topN(new Map([['a',3],['b',2]]),topN)
+
+                //assert
+                expect(actual).toStrictEqual(expected)
+          })
           
         })
 
