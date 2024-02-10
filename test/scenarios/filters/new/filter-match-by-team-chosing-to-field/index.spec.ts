@@ -46,6 +46,38 @@ describe('filter-match-by-team-choosing-to-field', () => {
 
     
   })
+
+    describe('Choosing to bat after winning toss', () => {
+     
+    it('has no match who choose to field ',()=>{
+        
+      //arrange   
+    
+      const f = createFilter()
+
+      const sut = createFilterMatchByTeamChoosingToField(f)
+       
+      const matches = [
+        createMatch({tossDecision:"bat"}),
+      createMatch({tossDecision:"bat"})]
+
+      const expected = [] as Match[]
+
+      //act
+
+      const actual = sut.filter(matches)
+
+
+      //assert
+
+      expect(f.filter).toHaveBeenCalledWith(matches)
+
+      expect(actual).toStrictEqual(expected)
+
+    })
+
+    
+  })
   
   
 })
