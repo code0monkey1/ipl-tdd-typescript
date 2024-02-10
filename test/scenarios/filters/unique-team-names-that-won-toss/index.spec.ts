@@ -22,7 +22,6 @@ describe('unique-team-names-that-won-toss', () => {
          const expected =new Set('a')
          
          //act 
-
          const actual = sut.getNames(matches)
  
 
