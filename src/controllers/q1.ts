@@ -36,7 +36,7 @@ export class TeamsSortedByWinCount implements ITeamsSortedByWinCount {
          private tossWinningTeamWinCount:ITossWinningTeamWinCount,
         private sortedTeamWins:ISortedTeamWinsMap){}
 
-        execute(matches:Match[]):[string,number][]{
+        execute(matches:Match[]):[string,number][]{  
 
          const teamWinCount = this.tossWinningTeamWinCount.execute(matches)
          
