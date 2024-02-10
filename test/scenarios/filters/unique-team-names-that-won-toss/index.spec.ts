@@ -19,7 +19,7 @@ describe('unique-team-names-that-won-toss', () => {
 
          const sut = new UniqueTossWinningTeams()
 
-         const expected =new Set('a')
+         const expected =['a']
          
          //act 
          const actual = sut.getNames(matches)
@@ -46,7 +46,7 @@ describe('unique-team-names-that-won-toss', () => {
 
          const sut = new UniqueTossWinningTeams()
 
-         const expected =new Set(['a','b'])
+         const expected =['a','b']
 
          //act 
 
@@ -55,7 +55,7 @@ describe('unique-team-names-that-won-toss', () => {
 
          //assert
          expect(actual).toStrictEqual(expected)
-         expect(actual.size).toBe(2)
+         expect(actual.length).toBe(2)
 
        })
 

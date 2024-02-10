@@ -30,7 +30,7 @@ export class TopNWinningTeams{
    constructor(
       private topN:number, 
       private teamWinCountMap:ITeamWinCountMap,
-      private sortedTeamWins:ISortedTeamWins,
+      private sortedTeamWins:ISortedTeamWinsMap,
       private topNTeamWins:ITopNTeams
       ){}
 
@@ -45,6 +45,7 @@ export class TopNWinningTeams{
    }
      
 }
+
 
 interface ITeamWinCountMap{
 
@@ -71,7 +72,7 @@ export class TeamWinCountMap implements ITeamWinCountMap{
 
 export class MapTeamWinCount implements IMappedTeamWins{
    
-   execute(teamNames: Set<string>, matches: Match[]): Map<string, number> {
+   execute(teamNames: string[], matches: Match[]): Map<string, number> {
 
          const team_wins = new Map<string,number>
 
@@ -94,9 +95,9 @@ export class MapTeamWinCount implements IMappedTeamWins{
    
 }
 export interface IMappedTeamWins{
-   execute(teamNames:Set<string>,matches:Match[]):Map<string,number>
+   execute(teamNames:string[],matches:Match[]):Map<string,number>
 }
-export interface ISortedTeamWins{
+export interface ISortedTeamWinsMap{
    sort(team_wins:Map<string,number>):Map<string,number>
 }
 
@@ -112,7 +113,7 @@ export class TopNTeams implements ITopNTeams{
    
 }
 
-export class SortedTeamWins implements ISortedTeamWins{
+export class SortedTeamWins implements ISortedTeamWinsMap{
    
   sort(team_wins: Map<string, number>): Map<string, number> {
 

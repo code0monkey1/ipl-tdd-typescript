@@ -16,7 +16,7 @@ describe.only('map-team-win-count', () => {
                         //arrange 
                         const sut = createMapTeamWinCount()
 
-                        const teamNames =new Set(['a'])
+                        const teamNames =['a']
 
                         const matches= [createMatch({winner:'b'})]
                         
@@ -35,7 +35,7 @@ describe.only('map-team-win-count', () => {
                         //arrange 
                         const sut = createMapTeamWinCount()
 
-                        const teamNames =new Set(['a'])
+                        const teamNames =['a']
 
                         const matches= [createMatch({winner:'a'})]
                         
@@ -59,7 +59,7 @@ describe.only('map-team-win-count', () => {
                               //arrange 
                         const sut = createMapTeamWinCount()
 
-                        const teamNames =new Set(['a','b'])
+                        const teamNames =['a','b']
 
                         const matches= [createMatch({winner:'a'}),
                                           createMatch({winner:'b'})]
