@@ -68,7 +68,7 @@ describe('filter-match-by-team-choosing-to-field', () => {
   
 })
 
-const createFilter=() =>{
+const createFilter=():IFilter<Match> =>{
 
     return {
       
