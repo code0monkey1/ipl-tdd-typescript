@@ -13,9 +13,9 @@ describe('unique-team-names-that-won-toss', () => {
          //arrange 
          const matches = [
           createMatch({tossWinner:'a'}),
-         createMatch({tossWinner:'a'}),
-         createMatch({tossWinner:'a'}),
-         createMatch({tossWinner:'a'})]
+          createMatch({tossWinner:'a'}),
+          createMatch({tossWinner:'a'}),
+          createMatch({tossWinner:'a'})]
 
          const sut = new UniqueTossWinningTeams()
 
