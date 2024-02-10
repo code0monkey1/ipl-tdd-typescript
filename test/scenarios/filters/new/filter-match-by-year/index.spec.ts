@@ -1,17 +1,9 @@
 import { Match } from '../../../../../src/entities/Match';
-import { IFilter } from '../../../../../src/scenarios/filters/new/index';
+import { FilterMatchByYear, IFilter } from '../../../../../src/scenarios/filters/new/index';
 import { createMatch } from '../../filter-matches-by-year/helper';
 
 
-export class FilterMatchByYear implements IFilter<Match>{
 
-  constructor(private year:string){}
-  
-  filter(arr: Match[]): Match[] {
-    return arr.filter( a => a.getYear()==this.year)
-  }
-  
-}
 
 describe('filter-match-by-year', () => {
 
