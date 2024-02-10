@@ -1,9 +1,7 @@
 
 import { IRepo } from "../data/interfaces";
 import { Match } from "../entities/Match";
-import { And } from "../scenarios/filters/and";
-import { MatchTeamFieldsAfterWinningToss } from "../scenarios/filters/fields-after-winning-toss";
-import { MatchPlayedInYear } from "../scenarios/filters/match-played-in-year";
+import { IFilter } from "../scenarios/filters/new";
 import { IUniqueTossWinningTeams } from "../scenarios/unique-toss-winning-team-names";
 
 
@@ -11,7 +9,7 @@ export class TopNTeamsThatElectedToFieldFirstAfterWinningTossInYear{
 
           constructor(
             private matchesRepo:IRepo<Match>,
-            private filterYear:string,
+            private matchFilter:IFilter<Match>,
             private topNWiningTeams:TopNWinningTeams
             ){}
 
@@ -20,30 +18,14 @@ export class TopNTeamsThatElectedToFieldFirstAfterWinningTossInYear{
             const matches = this.matchesRepo.data
 
             // filter matches by year , and choose to field first
-            const filteredMatches = matches.reduce((acc,match)=>{
-               
-                if(new And(
-                    [
-                      new MatchPlayedInYear(match,this.filterYear),
-                      new MatchTeamFieldsAfterWinningToss(match)
-                    ])){
-                   acc.push(match)
-                }
-                return acc
-              },[] as Match[])
+            const filteredMatches = this.matchFilter.filter(matches)
 
-             return this.topNWiningTeams.execute(filteredMatches)
+            return this.topNWiningTeams.execute(filteredMatches)
    
           }
   
 }
 
-export interface IFilteredMatches{
-        execute():void
-}
-export class FilteredMatches{
-     
-}
 
 export class TopNWinningTeams{
 
