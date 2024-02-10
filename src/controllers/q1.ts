@@ -29,7 +29,7 @@ export class TopNWinningTeams{
 
    constructor(
       private topN:number, 
-      private teamWinCountMap:TeamWinCountMap,
+      private teamWinCountMap:ITeamWinCountMap,
       private sortedTeamWins:ISortedTeamWins,
       private topNTeamWins:ITopNTeams
       ){}
@@ -90,7 +90,6 @@ export class MapTeamWinCount implements IMappedTeamWins{
          
             },0)
 
-  
     }
    
 }
