@@ -29,7 +29,7 @@ export class TopNWinningTeams{
 
    constructor(
       private topN:number, 
-      private teamWinCountMap:ITeamWinCount,
+      private teamWinCountMap:ITossWinningTeamWinCount,
       private sortedTeamWins:ISortedTeamWinsMap,
       private topNTeamWins:ITopNTeams
       ){}
@@ -47,12 +47,13 @@ export class TopNWinningTeams{
 }
 
 
-interface ITeamWinCount{
+interface ITossWinningTeamWinCount{
 
   execute(matches:Match[]):[string,number][]
 
 }
-export class TeamWinCount implements ITeamWinCount{
+
+export class TossWinningTeamTeamWinCount implements ITossWinningTeamWinCount{
 
    constructor(
             private uniqueTossWinningTeams:IUniqueTossWinningTeams,
@@ -61,9 +62,9 @@ export class TeamWinCount implements ITeamWinCount{
 
    execute(matches:Match[]):[string,number][]{
 
-         const uniqueTeamNames  =  this.uniqueTossWinningTeams.getNames(matches)
+         const teamNames  =  this.uniqueTossWinningTeams.getNames(matches)
 
-         const team_winsCount =this.mapTeamWins.execute(uniqueTeamNames,matches)
+         const team_winsCount =this.mapTeamWins.execute(teamNames,matches)
 
          return team_winsCount
    }
