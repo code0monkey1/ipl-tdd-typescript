@@ -10,7 +10,7 @@ export class TopTeamsUseCase{
           constructor(
             private matchesRepo:IRepo<Match>,
             private matchFilter:IFilter<Match>,
-            private topNTeams:TopNWinningTeams
+            private topNTeams:ITopNWinningTeams
             ){}
 
           execute(){
@@ -46,8 +46,14 @@ export class TeamsSortedByWinCount implements ITeamsSortedByWinCount {
 }
 
 
+interface ITopNWinningTeams{
 
-export class TopNWinningTeams{
+ execute(matches:Match[]):[string, number][]
+
+}
+
+
+export class TopNWinningTeams implements ITopNWinningTeams{
 
    constructor(
       private topN:number, 
