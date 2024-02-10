@@ -42,10 +42,16 @@ describe('map-team-win-count', () => {
                         //arrange 
                         const sut = new MapTeamWinCount()
 
-                        const teamName ='a'
-                        const matches=createMatch({tossWinner:'a'})
+                        const teamNames =new Set(['a'])
+
+                        const matches= [createMatch({winner:'a'})]
+                        
+                        const expected =['a']
 
                         //act
+                        const actual =sut.execute(teamNames,matches)
+
+
                          
                         //assert
 
