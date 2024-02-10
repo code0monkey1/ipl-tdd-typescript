@@ -1,6 +1,6 @@
-import { Match } from '../../../../src/entities/Match';
-import { IFilter } from '../../../../src/scenarios/filters/new/index';
-import { createMatch } from '../filter-matches-by-year/helper';
+import { Match } from '../../../../../src/entities/Match';
+import { IFilter } from '../../../../../src/scenarios/filters/new/index';
+import { createMatch } from '../../filter-matches-by-year/helper';
 
 
 export class FilterMatchByYear implements IFilter<Match>{
