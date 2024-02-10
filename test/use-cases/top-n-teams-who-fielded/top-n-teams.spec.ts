@@ -14,7 +14,21 @@ describe('top-n-teams', () => {
 
         describe('has teams less than n', () => {
 
-          it.todo('has 0 teams')
+          it('has 0 teams',()=>{
+
+                //arrange
+
+                const sut = new TopNTeams()
+                const topN = 2
+                const expected = [] as  [string,number] []
+                
+                //act
+
+                const actual = sut.topN(new Map([['a',1]]),topN)
+
+                //assert
+                expect(actual).toStrictEqual(expected)
+          })
           
         })
          describe('has teams more than n', () => {
