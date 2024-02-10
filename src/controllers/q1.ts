@@ -18,7 +18,7 @@ export class TopTeamsUseCase{
             const matches = this.matchesRepo.data
 
             // filter matches by year , and choose to field first
-            const filteredMatches = this.matchFilter.filter(matches)
+            const filteredMatches = this.matchFilter.execute(matches)
 
             return this.topNWiningTeams.execute(filteredMatches)
    
@@ -52,45 +52,45 @@ export class TeamWinCountMap{
 
    constructor(
             private uniqueTossWinningTeams:IUniqueTossWinningTeams,
-            private mappedTeamWins :IMappedTeamWins
+            private mapTeamWins :IMappedTeamWins
    ){}
 
    execute(matches:Match[]):Map<string,number>{
 
          const uniqueTeamNames  =  this.uniqueTossWinningTeams.getNames(matches)
 
-         const team_winsCount =this.mappedTeamWins.execute(uniqueTeamNames,matches)
+         const team_winsCount =this.mapTeamWins.execute(uniqueTeamNames,matches)
 
          return team_winsCount
    }
    
 }
 
-// export class MappedTeamWinCount implements IMappedTeamWins{
+export class MapTeamWinCount implements IMappedTeamWins{
    
-//    execute(teamNames: Set<string>, matches: Match[]): Map<string, number> {
+   execute(teamNames: Set<string>, matches: Match[]): Map<string, number> {
 
-//          const team_wins = new Map<string,number>
+         const team_wins = new Map<string,number>
 
-//          teamNames.forEach(t =>  team_wins.set(t,this.getTeamWinCount(t,matches))) 
+         teamNames.forEach(t =>  team_wins.set(t,this.getTeamWinCount(t,matches))) 
             
-//          return team_wins
-//    }
+         return team_wins
+   }
 
-//     private getTeamWinCount(teamName:string,matches:Match[]){
+    private getTeamWinCount(teamName:string,matches:Match[]){
 
-//      return matches.reduce((tot,match)=>{ 
+     return matches.reduce((tot,match)=>{ 
 
-//                if(match.getWinningTeam()==teamName) tot+=1
+               if(match.getWinningTeam()==teamName) tot+=1
                
-//                return tot
+               return tot
          
-//             },0)
+            },0)
 
   
-//     }
+    }
    
-// }
+}
 export interface IMappedTeamWins{
    execute(teamNames:Set<string>,matches:Match[]):Map<string,number>
 }

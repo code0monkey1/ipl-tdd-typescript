@@ -12,19 +12,19 @@ describe('filter-match-by-team-choosing-to-field', () => {
         
       //arrange   
     
-      const f = createFilter()
+      const filter = createFilter()
 
-      const sut = createFilterMatchByTeamChoosingToField(f)
+      const sut = createFilterMatchByTeamChoosingToField(filter)
        
       const matches = [createMatch({tossDecision:"field"})]
 
       //act
 
-      const actual = sut.filter(matches)
+      const actual = sut.execute(matches)
 
       //assert
 
-      expect(f.filter).toHaveBeenCalledWith(matches)
+      expect(filter.execute).toHaveBeenCalledWith(matches)
 
       expect(actual).toStrictEqual(matches)
 
@@ -39,9 +39,9 @@ describe('filter-match-by-team-choosing-to-field', () => {
         
       //arrange   
     
-      const f = createFilter()
+      const filter = createFilter()
 
-      const sut = createFilterMatchByTeamChoosingToField(f)
+      const sut = createFilterMatchByTeamChoosingToField(filter)
        
       const matches = [
         createMatch({tossDecision:"bat"}),
@@ -51,12 +51,12 @@ describe('filter-match-by-team-choosing-to-field', () => {
 
       //act
 
-      const actual = sut.filter(matches)
+      const actual = sut.execute(matches)
 
 
       //assert
 
-      expect(f.filter).toHaveBeenCalledWith(matches)
+      expect(filter.execute).toHaveBeenCalledWith(matches)
 
       expect(actual).toStrictEqual(expected)
 
@@ -72,7 +72,7 @@ const createFilter=() =>{
 
     return {
       
-        filter: jest.fn((arr:Match[])=>{
+        execute: jest.fn((arr:Match[])=>{
            return arr
         })
       

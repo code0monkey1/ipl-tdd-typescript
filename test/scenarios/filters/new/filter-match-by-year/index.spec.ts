@@ -26,7 +26,7 @@ describe('filter-match-by-year', () => {
             //act 
             
 
-            const actual =sut.filter(matches)
+            const actual =sut.execute(matches)
 
 
             //assert
@@ -57,7 +57,7 @@ describe('filter-match-by-year', () => {
             //act 
             
 
-            const actual =sut.filter(matches)
+            const actual =sut.execute(matches)
 
 
             //assert
@@ -85,7 +85,7 @@ describe('filter-match-by-year', () => {
             const expected = matches
             //act 
 
-            const actual =sut.filter(matches)
+            const actual =sut.execute(matches)
 
 
             //assert
