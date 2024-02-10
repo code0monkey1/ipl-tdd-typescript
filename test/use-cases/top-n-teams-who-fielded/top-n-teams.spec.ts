@@ -10,5 +10,34 @@ export class TopNTeams implements ITopNTeams{
 
 
 describe('top-n-teams', () => {
-  
+     describe('execute', () => {
+
+        describe('has teams less than n', () => {
+
+          it.todo('has 0 teams')
+          
+        })
+         describe('has teams more than n', () => {
+
+          it.todo('has 0 teams')
+          
+        })
+
+          describe('has teams equal to n', () => {
+
+          it.todo('has 0 teams')
+          
+        })
+
+        describe('has teams equal to n', () => {
+
+          it.todo('has 0 teams')
+          
+        })
+
+        
+
+        
+     })
+     
 })
