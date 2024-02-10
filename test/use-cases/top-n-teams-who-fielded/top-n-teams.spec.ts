@@ -14,7 +14,7 @@ describe('top-n-teams', () => {
 
         describe('has teams less than n', () => {
 
-          it('has 0 teams',()=>{
+          it('has 0 teams , and we cant top 3',()=>{
 
                 //arrange
 
@@ -25,6 +25,23 @@ describe('top-n-teams', () => {
                 //act
 
                 const actual = sut.topN(new Map([]),topN)
+
+                //assert
+                expect(actual).toStrictEqual(expected)
+          })
+
+
+          it('has 1 team , and we want top 2',()=>{
+
+                //arrange
+
+                const sut = new TopNTeams()
+                const topN = 2
+                const expected = [ ['a',1] ]
+                
+                //act
+
+                const actual = sut.topN(new Map([['a',1]]),topN)
 
                 //assert
                 expect(actual).toStrictEqual(expected)
