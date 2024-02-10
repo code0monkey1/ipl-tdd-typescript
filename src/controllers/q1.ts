@@ -25,22 +25,40 @@ export class TopTeamsUseCase{
           }
 }
 
+interface ITeamsSortedByWinCount{
+
+    execute(matches:Match[]):[string,number][]
+}
+
+export class TeamsSortedByWinCount implements ITeamsSortedByWinCount {
+   
+      constructor( 
+         private tossWinningTeamWinCount:ITossWinningTeamWinCount,
+        private sortedTeamWins:ISortedTeamWinsMap){}
+
+        execute(matches:Match[]):[string,number][]{
+
+         const teamWinCount = this.tossWinningTeamWinCount.execute(matches)
+         
+         return  this.sortedTeamWins.sort(teamWinCount)
+
+        }
+}
+
 export class TopNWinningTeams{
 
    constructor(
       private topN:number, 
-      private tossWinningTeamWinCount:ITossWinningTeamWinCount,
-      private sortedTeamWins:ISortedTeamWinsMap,
+      private teamsSortedByWinCount:ITeamsSortedByWinCount,
       private topNTeamWins:ITopNTeams
       ){}
 
    execute(matches:Match[]):[string, number][]{
 
-         const team_winsCount = this.tossWinningTeamWinCount.execute(matches)
          
-         const sorted_team_wins = this.sortedTeamWins.sort(team_winsCount)
+         const sortedTeamsWithCount = this.teamsSortedByWinCount.execute(matches)
         
-         return this.topNTeamWins.topN(sorted_team_wins,this.topN)
+         return this.topNTeamWins.topN(sortedTeamsWithCount,this.topN)
 
    }
      
