@@ -40,7 +40,7 @@ export class TeamsSortedByWinCount implements ITeamsSortedByWinCount {
 
          const teamWinCount = this.tossWinningTeamWinCount.execute(matches)
          
-         return  this.sortedTeamWins.sort(teamWinCount)
+         return  this.sortedTeamWins.execute(teamWinCount)
 
         }
 }
@@ -125,7 +125,7 @@ export interface IMapTeamWins{
    execute(teamNames:string[],matches:Match[]):[string,number][]
 }
 export interface ISortedTeamWinsMap{
-   sort(team_wins:[string,number][]):[string,number][]
+   execute(team_wins:[string,number][]):[string,number][]
 }
 
 export interface ITopNTeams{
@@ -142,7 +142,7 @@ export class TopNTeams implements ITopNTeams{
 
 export class SortedTeamWins implements ISortedTeamWinsMap{
    
-  sort(team_wins:[string,number][]):[string,number][] {
+  execute(team_wins:[string,number][]):[string,number][] {
 
       team_wins.sort((a, b) => b[1] - a[1])
 
