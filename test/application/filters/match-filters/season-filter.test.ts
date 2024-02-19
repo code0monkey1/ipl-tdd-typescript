@@ -6,7 +6,8 @@ class SeasonFilter implements IFilter<Match> {
   constructor(private year:number){}
   execute(data: Match[]): Match[] {
     
-      return data
+    return data.filter( m => m.getSeason()===this.year)
+      
   }
 
 }
@@ -21,7 +22,8 @@ describe('year-filter', () => {
       it('returns a list of matches with the given season',()=>{
 
         //arrange
-        const sut = new SeasonFilter()
+        const filterYear=2017
+        const sut = new SeasonFilter(filterYear)
 
         const matchProps1:MatchProps={
           matchId: 0,
@@ -40,7 +42,7 @@ describe('year-filter', () => {
 
         const matchProps2:MatchProps={
           matchId: 0,
-          season: 2017,
+          season: 2016,
           city: '',
           date: new Date(),
           team1: '',
@@ -53,17 +55,17 @@ describe('year-filter', () => {
         const match2 = new Match(matchProps2)
 
         const matches= [ match1,match2]
+
+        const expected = [match1]
         //act
-        const result = sut.execute(matches)
+        const actual = sut.execute(matches)
 
         //assert
+       
+        expect(actual).toStrictEqual(expected)
 
       })
         
-    })
-    
-    describe('has no matches with season year', () => {
-      
     })
     
 

@@ -46,4 +46,48 @@ export class Match {
         this.result = matchProps.result;
         this.winner = matchProps.winner;
     }
+
+
+    // Getters for all attributes
+    getMatchId(): number {
+        return this.matchId;
+    }
+
+    getSeason(): number {
+        return this.season;
+    }
+
+    getCity(): string {
+        return this.city;
+    }
+
+    getDate(): Date {
+        return this.date;
+    }
+
+    getTeam1(): string {
+        return this.team1;
+    }
+
+    getTeam2(): string {
+        return this.team2;
+    }
+
+    getTossWinner(): string {
+        return this.tossWinner;
+    }
+
+    getTossDecision(): TossDecision {
+        return this.tossDecision;
+    }
+
+    getResult(): Result {
+        return this.result;
+    }
+
+    getWinner(): string {
+        return this.winner;
+}
+
+
 }
