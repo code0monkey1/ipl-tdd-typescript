@@ -1,6 +1,7 @@
 import { IFilter } from "../../../../src/application/interfaces/filters/filter";
 import { SeasonFilter } from "../../../../src/application/interfaces/filters/match-filters/season-filter";
-import { Match, TossDecision } from '../../../../src/domain/entities/Match';
+import { DeliveryProps } from '../../../../src/domain/entities/Delivery';
+import { Match, MatchProps, TossDecision } from '../../../../src/domain/entities/Match';
 import { createMatchWith } from "./helpers";
 
 export class TossDecisionFilter implements IFilter<Match>{
@@ -14,7 +15,8 @@ export class TossDecisionFilter implements IFilter<Match>{
 }
 
 describe('toss-decision-filter', () => {
- 
+
+
   describe('execute', () => {
 
     describe('fields first', () => {
@@ -99,19 +101,23 @@ describe('toss-decision-filter', () => {
 })
 
 it('learning test',()=>{
-
+   
+   const obj:Partial<MatchProps> ={tossDecision:TossDecision.FIELD,season:2017}
+   console.log(Object.keys(obj))
   
     const match1 = createMatchWith({tossDecision:TossDecision.FIELD,season:2017})
 
   
     const match3 = createMatchWith({tossDecision:TossDecision.FIELD,season:2017})
     const match2 = createMatchWith({tossDecision:TossDecision.BAT})
+
+    
    
     const filters:IFilter<Match>[] = 
     [ new SeasonFilter(2017),new TossDecisionFilter(TossDecision.FIELD)]
 
      const result = filters.reduce( (acc,f)=>acc=f.execute(acc),[match1,match2,match3])
 
-     expect(result).toStrictEqual([match1])
+     expect(result).toStrictEqual([match1,match3])
 
 })
