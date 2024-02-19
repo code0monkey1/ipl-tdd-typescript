@@ -1,19 +1,7 @@
-import { IFilter } from '../../../../src/application/interfaces/filters/filter';
-import { Match, MatchProps, Result, TossDecision } from '../../../../src/domain/entities/Match';
+import { Match } from '../../../../src/domain/entities/Match';
+import { createMatchWith, createSeasonFilter } from './helpers';
 
-class SeasonFilter implements IFilter<Match> {
-
-  constructor(private year:number){}
-  execute(data: Match[]): Match[] {
-    
-    return data.filter( m => m.getSeason()===this.year)
-      
-  }
-
-}
-
-describe('year-filter', () => {
-
+describe('season-filter', () => {
 
   describe('execute', () => {
 
@@ -23,36 +11,12 @@ describe('year-filter', () => {
 
         //arrange
         const filterYear=2017
-        const sut = new SeasonFilter(filterYear)
+        const sut = createSeasonFilter(filterYear)
 
-        const matchProps1:MatchProps={
-          matchId: 0,
-          season: 2017,
-          city: '',
-          date: new Date(),
-          team1: '',
-          team2: '',
-          tossWinner: '',
-          tossDecision: TossDecision.FIELD,
-          result: Result.NORMAL,
-          winner: ''
-        }
-        const match1 = new Match(matchProps1)
+     
+        const match1 = createMatchWith({season:2017})
 
-
-        const matchProps2:MatchProps={
-          matchId: 0,
-          season: 2016,
-          city: '',
-          date: new Date(),
-          team1: '',
-          team2: '',
-          tossWinner: '',
-          tossDecision: TossDecision.FIELD,
-          result: Result.NORMAL,
-          winner: ''
-        }
-        const match2 = new Match(matchProps2)
+        const match2 = createMatchWith({season:2016})
 
         const matches= [ match1,match2]
 
@@ -67,8 +31,54 @@ describe('year-filter', () => {
       })
         
     })
-    
 
+    describe('has no matches with the given season year', () => {
+
+      it('returns an empty array',()=>{
+
+        //arrange
+        
+        const filterYear=2018
+
+        const sut = createSeasonFilter(filterYear)
+
+        const match1 = createMatchWith({season:2017})
+        const match2 = createMatchWith({season:2016})
+        
+        const matches= [ match1,match2]
+
+        const expected:Match[]= []
+        //act
+        const actual = sut.execute(matches)
+
+        //assert
+       
+        expect(actual).toStrictEqual(expected)
+
+      })
+      
+    })
+
+    describe('when an empty matches array is provided', () => {
+
+      it('returns an empty array',()=>{
+
+        //arrange
+
+        const sut = createSeasonFilter(2018)
+        const matches:Match[]= [ ]
+
+        const expected:Match[]= []
+
+        //act
+        const actual = sut.execute(matches)
+
+        //assert
+        expect(actual).toStrictEqual(expected)
+
+      })
+      
+    })
 
   })
   

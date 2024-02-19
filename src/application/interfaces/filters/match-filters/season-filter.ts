@@ -2,9 +2,10 @@ import { Match } from '../../../../domain/entities/Match';
 import { IFilter } from '../filter';
 
 
-class SeasonFilter implements IFilter<Match> {
+export class SeasonFilter implements IFilter<Match> {
+  constructor(private year:number){}
   execute(data: Match[]): Match[] {
-    throw new Error('Method not implemented.');
+     return data.filter( m => m.getSeason()===this.year)
   }
 
 }
