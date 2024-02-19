@@ -21,7 +21,7 @@ export type DeliveryProps={
   
 }
 
-class Delivery {
+export class Delivery {
 
   constructor(private deliveryProps:DeliveryProps){}
 
