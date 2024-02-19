@@ -1,3 +1,5 @@
 export interface IFilter<T>{
-  execute():T[]
+
+  execute(data:T[]):T[]
+  
 }
