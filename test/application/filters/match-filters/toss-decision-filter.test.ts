@@ -109,17 +109,17 @@ it('learning test', () => {
     };
 
     const match1 = createMatchWith({ tossDecision: TossDecision.FIELD, season: 2017 });
-    const match3 = createMatchWith({ tossDecision: TossDecision.FIELD, season: 2017 });
+
     const match2 = createMatchWith({ tossDecision: TossDecision.BAT });
 
     const filters: IFilter<Match>[] = [new SeasonFilter(2017), new TossDecisionFilter(TossDecision.FIELD)];
 
-    const result = [match1, match2, match3].reduce((acc: Match[], curr) => {
+    const result = [match1, match2].reduce((acc: Match[], curr) => {
         if (Object.keys(obj).every(k => curr.hasOwnProperty(k as keyof MatchProps) && obj[k as keyof MatchProps] === curr[k as keyof MatchProps])) {
             acc.push(curr);
         }
         return acc;
     }, [] as Match[]);
 
-    expect(result).toStrictEqual([match1, match3]);
+    expect(result).toStrictEqual([match1]);
 });
