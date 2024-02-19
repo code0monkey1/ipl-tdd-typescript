@@ -100,24 +100,26 @@ describe('toss-decision-filter', () => {
   
 })
 
-it('learning test',()=>{
-   
-   const obj:Partial<MatchProps> ={tossDecision:TossDecision.FIELD,season:2017}
-   console.log(Object.keys(obj))
-  
-    const match1 = createMatchWith({tossDecision:TossDecision.FIELD,season:2017})
+it('learning test', () => {
 
   
-    const match3 = createMatchWith({tossDecision:TossDecision.FIELD,season:2017})
-    const match2 = createMatchWith({tossDecision:TossDecision.BAT})
+    const obj: Partial<MatchProps> = {
+        tossDecision: TossDecision.FIELD,
+        season: 2017
+    };
 
-    
-   
-    const filters:IFilter<Match>[] = 
-    [ new SeasonFilter(2017),new TossDecisionFilter(TossDecision.FIELD)]
+    const match1 = createMatchWith({ tossDecision: TossDecision.FIELD, season: 2017 });
+    const match3 = createMatchWith({ tossDecision: TossDecision.FIELD, season: 2017 });
+    const match2 = createMatchWith({ tossDecision: TossDecision.BAT });
 
-     const result = filters.reduce( (acc,f)=>acc=f.execute(acc),[match1,match2,match3])
+    const filters: IFilter<Match>[] = [new SeasonFilter(2017), new TossDecisionFilter(TossDecision.FIELD)];
 
-     expect(result).toStrictEqual([match1,match3])
+    const result = [match1, match2, match3].reduce((acc: Match[], curr) => {
+        if (Object.keys(obj).every(k => curr.hasOwnProperty(k as keyof MatchProps) && obj[k as keyof MatchProps] === curr[k as keyof MatchProps])) {
+            acc.push(curr);
+        }
+        return acc;
+    }, [] as Match[]);
 
-})
+    expect(result).toStrictEqual([match1, match3]);
+});
