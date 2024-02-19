@@ -102,12 +102,15 @@ it('learning test',()=>{
 
   
     const match1 = createMatchWith({tossDecision:TossDecision.FIELD,season:2017})
+
+  
+    const match3 = createMatchWith({tossDecision:TossDecision.FIELD,season:2017})
     const match2 = createMatchWith({tossDecision:TossDecision.BAT})
    
     const filters:IFilter<Match>[] = 
     [ new SeasonFilter(2017),new TossDecisionFilter(TossDecision.FIELD)]
 
-     const result = filters.reduce( (acc,f)=>acc=f.execute(acc),[match1,match2])
+     const result = filters.reduce( (acc,f)=>acc=f.execute(acc),[match1,match2,match3])
 
      expect(result).toStrictEqual([match1])
 
