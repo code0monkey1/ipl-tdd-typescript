@@ -1,7 +1,7 @@
 import { Match } from "../../../../domain/entities/Match";
 import { IFilter } from "../filter";
 
-export class WinTossFilter implements IFilter<Match>{
+export class FieldFirst implements IFilter<Match>{
 
   constructor(private matches:Match[]){}
   
