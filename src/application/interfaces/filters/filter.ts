@@ -1,3 +1,3 @@
-interface IFilter<T>{
+export interface IFilter<T>{
   execute():T[]
 }
