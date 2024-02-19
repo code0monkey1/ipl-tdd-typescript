@@ -7,6 +7,4 @@ export class FieldFirst implements IFilter<Match>{
     throw new Error("Method not implemented.");
   }
   
-
-  
 }

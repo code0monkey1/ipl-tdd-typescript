@@ -45,7 +45,7 @@ describe('season-filter', () => {
         const match1 = createMatchWith({season:2017})
         const match2 = createMatchWith({season:2016})
         
-        const matches= [ match1,match2]
+        const matches= [ match1,match2 ]
 
         const expected:Match[]= []
         //act
