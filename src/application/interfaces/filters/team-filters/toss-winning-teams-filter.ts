@@ -6,6 +6,7 @@ export interface ITossWinningTeamsFilter{
 
 
 export class TossWinningTeams implements ITossWinningTeamsFilter{
+  
   execute(matches: Match[]): string[] {
     
     const teams = new Set<string>()
@@ -17,3 +18,4 @@ export class TossWinningTeams implements ITossWinningTeamsFilter{
   }
   
 }
+
