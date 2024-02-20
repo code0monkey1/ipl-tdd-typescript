@@ -1,7 +1,6 @@
 import { IFilter } from "../../../../src/application/interfaces/filters/filter";
 import { SeasonFilter } from "../../../../src/application/interfaces/filters/match-filters/season-filter";
-import { DeliveryProps } from '../../../../src/domain/entities/Delivery';
-import { Match, MatchProps, TossDecision } from '../../../../src/domain/entities/Match';
+import { Match, TossDecision } from '../../../../src/domain/entities/Match';
 import { createMatchWith } from "./helpers";
 
 export class TossDecisionFilter implements IFilter<Match>{
