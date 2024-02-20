@@ -1,17 +1,10 @@
 import { IFilter } from "../../../../src/application/interfaces/filters/filter";
 import { SeasonFilter } from "../../../../src/application/interfaces/filters/match-filters/season-filter";
+import { TossDecisionFilter } from '../../../../src/application/interfaces/filters/match-filters/toss-decision-filter';
 import { Match, TossDecision } from '../../../../src/domain/entities/Match';
 import { createMatchWith } from "./helpers";
 
-export class TossDecisionFilter implements IFilter<Match>{
 
-  constructor(private tossDecision:TossDecision){}
-
-  execute(data: Match[]): Match[] {
-    return data.filter( m => m.getTossDecision()===this.tossDecision)
-  }
-  
-}
 
 describe('toss-decision-filter', () => {
 
