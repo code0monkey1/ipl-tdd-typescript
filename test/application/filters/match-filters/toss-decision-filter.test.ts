@@ -104,11 +104,8 @@ it('learning test',()=>{
   
     const match1 = createMatchWith({tossDecision:TossDecision.FIELD,season:2017})
 
-  
     const match3 = createMatchWith({tossDecision:TossDecision.FIELD,season:2017})
     const match2 = createMatchWith({tossDecision:TossDecision.BAT})
-
-    
    
     const filters:IFilter<Match>[] = 
     [ new SeasonFilter(2017),new TossDecisionFilter(TossDecision.FIELD)]
