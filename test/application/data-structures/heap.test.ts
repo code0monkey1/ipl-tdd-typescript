@@ -1,5 +1,6 @@
-import { Heap } from 'heap-js';
-import { MyHeap } from "../interfaces/data-structures/heap";
+import Heap from 'heap-js';
+import { MyHeap } from '../../../src/application/interfaces/data-structures/heap';
+
 
 type TeamWins =Record<string,number>
 
