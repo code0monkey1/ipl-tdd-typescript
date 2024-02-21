@@ -1,57 +1,32 @@
-import Heap from 'heap-js';
-export interface MyHeap<T>{
-   heapPush(t:T):void
-   heapPop():T | undefined
-   
-}
+import { Heap } from 'heap-js';
+const numbers = [2, 3, 7, 5];
 
+// Changes the array elements order into a heap in-place
+Heap.heapify(numbers);
+console.log(numbers); //> [ 2, 3, 5, 7 ]
 
-type TeamWins =Record<number,string>
-
-export class MatchWinnerHeap  implements MyHeap<TeamWins>{
-   private heapArr=[] as TeamWins[]
-
-   constructor(heapArr?:TeamWins[]){
-    
-   if(heapArr)this.heapArr = heapArr
-   
-     Heap.heapify(this.heapArr)
-  }
- 
-  heapPush(t: TeamWins): void {
-
-     Heap.heappush(this.heapArr,t)
-  }
-  heapPop(): TeamWins | undefined {
-  
-    return  Heap.heappop(this.heapArr)
-      
-  }
-  heapTop(){
-    
-    return Heap.heaptop(this.heapArr)
-  }
- 
-}
-
+// Pushes a new value to the heap
+Heap.heappush(numbers, 1);
+console.log(numbers); //> [ 1, 2, 5, 7, 3 ]
 describe('heap works well', () => {
 
   it('test',()=>{
      
     //arrange
-    const matchWins:TeamWins[] = [{9:'two'},{20:'one'},{3:'three'}]
+      
+    const numbers = [2, 3, -1, 5];
 
-   const sut = new MatchWinnerHeap(matchWins)
+    // Changes the array elements order into a heap in-place
+    Heap.heapify(numbers);
+    console.log(numbers); //> [ 2, 3, 5, 7 ]
 
-   const expected = {3:'three'}
-    //act
+    // Pushes a new value to the heap
+    Heap.heappush(numbers, 1);
+    console.log(numbers); //> [ 1, 2, 5, 7, 3 ]
 
-   const actual=sut.heapTop()
+    Heap.heappush(numbers,100)
 
-    //assert
-  
-    expect(actual).toBe(expected)
-
+    console.log(Heap.heappop(numbers))
 
   })
   
