@@ -1,55 +1,45 @@
-import { Heap } from 'heap-js';
+import { Comparator, Heap } from 'heap-js';
 
-type WinnerCount = Record<number,string>
+type WinnerCount = Record<number, string>;
 
-export type Comparator<T> = (a: T, b: T) => number;
+class MyHeap<T> {
+    private numbers: T[];
+    private heap: Heap<T>;
 
-interface IHeap<T>{
+    constructor(numbers: T[], compare: Comparator<T>) {
+        this.numbers = numbers;
+        this.heap = new Heap(compare);
+        this.heap.init(this.numbers);
+    }
 
-     heapPush(e:T):void
+    heapPush(n: T) {
+        this.heap.add(n);
+    }
 
-     heapPop():T|undefined
-
-}
-
-class MyHeap implements IHeap<string>{
-   
-     constructor(private numbers=[] as string []){
-       
-       Heap.heapify(numbers)
-     }
-     heapPush(n:string){
-        Heap.heappush(this.numbers,n)
-     }
-
-     heapPop():string|undefined{
-      return Heap.heappop(this.numbers)
-     }
-
-
-
+    heapPop(): T | undefined {
+        return this.heap.pop();
+    }
 }
 
 describe('heap works well', () => {
+    it('test', () => {
+        // arrange
+        const compareWinnerCount: Comparator<WinnerCount> = (a, b) => {
+            // Custom comparison logic for WinnerCount type
+            // Implement your comparison logic here
+            return 0; // Placeholder return value
+        };
 
-  it('test',()=>{
-     
-    //arrange
-      
-    const heap = new MyHeap(['d','c','a','b','e'])
+        const heap = new MyHeap<WinnerCount>([{ 1: 'a' }, { 2: 'b' }, { 3: 'c' }], compareWinnerCount);
 
-    // Changes the array elements order into a heap in-place
+        // Pushes a new value to the heap
+        heap.heapPush({ 4: 'd' });
 
-    // Pushes a new value to the heap
-    heap.heapPush('f');
-   
-    let v = heap.heapPop()
+        let v = heap.heapPop();
 
-    while(v!==undefined){
-       console.log(v)
-       v= heap.heapPop()
-    }
-
-  })
-  
-})
+        while (v !== undefined) {
+            console.log(v);
+            v = heap.heapPop();
+        }
+    });
+});
