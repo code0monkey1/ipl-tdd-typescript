@@ -11,7 +11,9 @@ export type TableData ={
   WINNER: string;
 }
 
+
 export interface UniqueValuesExtractor<T> {
   getUniqueValues<K extends keyof T>(data: T[], attribute: K): T[K][];
 }
+
 

@@ -14,6 +14,7 @@ class Filter<F, I> implements IFilter<Partial<F>, I> {
 }
 
 
+
 describe('generic filter', () => {
   
   it("filers as per attributes",()=>{
