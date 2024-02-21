@@ -48,8 +48,17 @@ class MyHeap implements IHeap<WinnerCount>{
         return this.heap.pop();
     }
 
-    heapTop(n:number):WinnerCount[]|undefined{
-       return this.heap.top(n)
+    heapTop(n: number): WinnerCount[] | undefined {
+        const topValues: WinnerCount[] = [];
+        for (let i = 0; i < n; i++) {
+            const value = this.heap.pop();
+            if (value) {
+                topValues.push(value);
+            } else {
+                break;
+            }
+        }
+        return topValues;
     }
 }
 
@@ -59,7 +68,7 @@ describe('heap works well', () => {
         // arrange
      
 
-        const heap = new MyHeap([{  'b':3 },{  'a':4 }, {  'c':3 }], topWinners);
+      const heap = new MyHeap([{  'b':3 },{  'a':4 }, {  'c':3 }], topWinners);
 
         // Pushes a new value to the heap
       heap.heapPush({'d':1 });
@@ -73,7 +82,7 @@ describe('heap works well', () => {
 
        let c = heap.heapTop(2)
 
-       console.log(c)
+      console.log(c)
        
     });
 });
