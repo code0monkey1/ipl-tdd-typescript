@@ -3,7 +3,7 @@ import { Match } from "../../types";
 
 export class UniqueMatchAttributeValues implements UniqueValuesExtractor<Match> {
   constructor() {}
-  execute<K extends keyof Match>(data: Match[], attribute: K): Match[K][] {
+  execute(data: Match[], attribute: keyof Match): Match[keyof Match][] {
     const uniqueValues = [...new Set(data.map(item => item[attribute]))];
     return uniqueValues;
   }
