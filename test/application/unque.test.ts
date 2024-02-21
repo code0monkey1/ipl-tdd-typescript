@@ -1,15 +1,6 @@
+import { Match, Result, TossDecision } from '../../src/application/types';
+import { UniqueMatchAttributeValues } from '../../src/application/uniques/match/UniqueMatchAttributeValues';
 
-import { UniqueValuesExtractor } from '../../../src/application/interfaces/uniques/uniques';
-import { Match, Result, TossDecision } from '../../../src/application/types';
-
-export class TableDataProcessor implements UniqueValuesExtractor<Match> {
-  constructor() {}
-
-  getUniqueValues<K extends keyof Match>(data: Match[], attribute: K): Match[K][] {
-    const uniqueValues = [...new Set(data.map(item => item[attribute]))];
-    return uniqueValues;
-  }
-}
 
 describe('', () => {
   it('test', () => {
@@ -19,9 +10,9 @@ describe('', () => {
       // Add more data entries here
     ];
 
-    const processor = new TableDataProcessor();
+    const processor = new UniqueMatchAttributeValues();
 
-    const uniqueTossWinners = processor.getUniqueValues(tableData, 'TOSS_WINNER');
+    const uniqueTossWinners = processor.execute(tableData, 'TOSS_WINNER');
 
     expect(uniqueTossWinners).toStrictEqual(['Royal Challengers Bangalore', 'C']);
   });
