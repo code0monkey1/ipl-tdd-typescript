@@ -19,3 +19,4 @@ export type Match ={
   RESULT: Result;
   WINNER: string;
 }
+
