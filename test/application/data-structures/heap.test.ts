@@ -2,22 +2,21 @@ import { Heap } from 'heap-js';
 
 type Comparator<T> = (a: T, b: T) => number
 
-const compareWinnerCount: Comparator<WinnerCount> = (a:WinnerCount, b:WinnerCount) => {
+const topWinners: Comparator<WinnerCount> = (a:WinnerCount, b:WinnerCount) => {
           
             const keyA = Object.values(a)[0]; // Get the key of object a
             const keyB = Object.values(b)[0]; // Get the key of object b
 
             // Compare the keys as numbers
-            if (keyA < keyB) {
+            if (keyA > keyB) {
                 return -1;
-            } else if (keyA > keyB) {
+            } else if (keyA < keyB) {
                 return 1;
             } else {
                 return 0;
             }
              
   };
-  
 
 type WinnerCount = Record<string, number>;
 
@@ -27,7 +26,7 @@ interface IHeap<T> {
 
     heapPop():T|undefined
 
-    heapTop():T[]|undefined
+    heapTop(n:number):T[]|undefined
 }
 
 class MyHeap implements IHeap<WinnerCount>{
@@ -35,8 +34,8 @@ class MyHeap implements IHeap<WinnerCount>{
     private values: WinnerCount[];
     private heap: Heap<WinnerCount>;
 
-    constructor(numbers: WinnerCount[], compare: Comparator<WinnerCount>) {
-        this.values = numbers;
+    constructor(arr: WinnerCount[]=[], compare: Comparator<WinnerCount>) {
+        this.values = arr;
         this.heap = new Heap(compare);
         this.heap.init(this.values);
     }
@@ -49,8 +48,8 @@ class MyHeap implements IHeap<WinnerCount>{
         return this.heap.pop();
     }
 
-    heapTop():WinnerCount[]{
-       return this.heap.top()
+    heapTop(n:number):WinnerCount[]|undefined{
+       return this.heap.top(n)
     }
 }
 
@@ -60,18 +59,21 @@ describe('heap works well', () => {
         // arrange
      
 
-        const heap = new MyHeap([{  'a':4 }, {  'b':3 }, {  'c':3 }], compareWinnerCount);
+        const heap = new MyHeap([{  'b':3 },{  'a':4 }, {  'c':3 }], topWinners);
 
         // Pushes a new value to the heap
-        heap.heapPush({'d':1 });
+      heap.heapPush({'d':1 });
+      
 
-        let v = heap.heapPop();
+       let v = heap.heapPop()!;
 
-        console.log("Heap top",heap.heapTop())
+       console.log(v)
 
-        while (v !== undefined) {
-            console.log(v);
-            v = heap.heapPop();
-        }
+       heap.heapPush(v)
+
+       let c = heap.heapTop(2)
+
+       console.log(c)
+       
     });
 });

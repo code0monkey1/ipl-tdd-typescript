@@ -1,7 +1,8 @@
-export interface MyHeap<T>{
-   heapify( arr :T[]):void
-   heapPush(t:T):void
-   heapPop():T | undefined
-   
-}
+interface IHeap<T> {
 
+    heapPush(n:T):void
+
+    heapPop():T|undefined
+
+    heapTop():T[]|undefined
+}
