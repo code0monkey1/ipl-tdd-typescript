@@ -3,9 +3,15 @@ import { MyHeap } from "../interfaces/data-structures/heap";
 
 type TeamWins =Record<string,number>
 
-class MatchWinnerHeap extends Heap<TeamWins> implements MyHeap<TeamWins>{
+class MatchWinnerHeap  implements MyHeap<TeamWins>{
+   
+  private heapArr:TeamWins[]=[]
+
+  constructor(){}
+ 
   heapPush(t: TeamWins): void {
-    throw new Error('Method not implemented.');
+
+     Heap.heappush(this.heapArr,t)
   }
   heapPop(): TeamWins | undefined {
     throw new Error('Method not implemented.');
