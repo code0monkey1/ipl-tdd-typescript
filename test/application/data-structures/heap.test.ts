@@ -15,7 +15,7 @@ const topWinners: Comparator<WinnerCount> = (a:WinnerCount, b:WinnerCount) => {
             } else {
                 return 0;
             }
-             
+
   };
 
 type WinnerCount = Record<string, number>;
@@ -48,8 +48,10 @@ class MyHeap implements IHeap<WinnerCount>{
         return this.heap.pop();
     }
 
-    heapTop(n: number): WinnerCount[] | undefined {
+    heapTop(n:number):WinnerCount[]|undefined{
+
         const topValues: WinnerCount[] = [];
+
         for (let i = 0; i < n; i++) {
             const value = this.heap.pop();
             if (value) {
@@ -59,15 +61,16 @@ class MyHeap implements IHeap<WinnerCount>{
             }
         }
         return topValues;
+
     }
 }
 
 
 describe('heap works well', () => {
+  
     it('test', () => {
         // arrange
      
-
       const heap = new MyHeap([{  'b':3 },{  'a':4 }, {  'c':3 }], topWinners);
 
         // Pushes a new value to the heap
@@ -80,7 +83,7 @@ describe('heap works well', () => {
 
        heap.heapPush(v)
 
-       let c = heap.heapTop(2)
+       let c = heap.heapTop(3)
 
       console.log(c)
        
