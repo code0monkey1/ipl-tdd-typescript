@@ -1,71 +1,61 @@
 import { Heap } from 'heap-js';
-import { IHeap } from '../interfaces/data-structures/heap';
+import { HeapComparator, IHeap } from '../interfaces/data-structures/heap';
 
+type WinnerCount = Record<string, number>;
 
-type TeamWins =Record<string,number>
+export const topWinners: HeapComparator<WinnerCount> = (a:WinnerCount, b:WinnerCount) => {
+          
+            const keyA = Object.values(a)[0]; // Get the key of object a
+            const keyB = Object.values(b)[0]; // Get the key of object b
 
-// export class MatchWinnerHeap  implements IHeap<TeamWins>{
-   
-//   constructor(private heapArr:TeamWins[] =[]){
+            // Compare the keys as numbers
+            if (keyA > keyB) {
+                return -1;
+            } else if (keyA < keyB) {
+                return 1;
+            } else {
+                return 0;
+            }
 
-//      Heap.heapify(this.heapArr)
-//   }
-//   init(arr: TeamWins[]): void {
-//     throw new Error('Method not implemented.');
-//   }
- 
-//   heapPush(t: TeamWins): void {
-
-//      Heap.heappush(this.heapArr,t)
-//   }
-//   heapPop(): TeamWins | undefined {
+  };
   
-//     return  Heap.heappop(this.heapArr)
-      
-//   }
-//   heapTop(){
-    
-//     return Heap.heaptop(this.heapArr)
-//   }
- 
-// }
+export class MyHeap implements IHeap<WinnerCount>{
 
-// class MyHeap implements IHeap<WinnerCount>{
+    private values: WinnerCount[]=[];
+    private heap: Heap<WinnerCount>;
 
-//     private values: WinnerCount[]=[];
-//     private heap: Heap<WinnerCount>;
+    constructor(compare: HeapComparator<WinnerCount>) {
+        this.heap = new Heap(compare);
+        this.heap.init(this.values);
+    }
 
-//     constructor(compare: HeapComparator<WinnerCount>) {
-//         this.heap = new Heap(compare);
-//         this.heap.init(this.values);
-//     }
+    init(arr: WinnerCount[]){
+         this.values = arr;
+         this.heap.init(this.values);
+    }
 
-//     init(arr: WinnerCount[]){
-//          this.values = arr;
-//          this.heap.init(this.values);
-//     }
+    heapPush(n: WinnerCount) {
+        this.heap.add(n);
+    }
 
-//     heapPush(n: WinnerCount) {
-//         this.heap.add(n);
-//     }
+    heapPop(): WinnerCount | undefined {
+        return this.heap.pop();
+    }
 
-//     heapPop(): WinnerCount | undefined {
-//         return this.heap.pop();
-//     }
+    heapTop(n:number):WinnerCount[]|undefined{
 
-//     heapTop(n:number):WinnerCount[]|undefined{
+        const topValues: WinnerCount[] = [];
 
-//         const topValues: WinnerCount[] = [];
+        for (let i = 0; i < n; i++) {
 
-//         for (let i = 0; i < n; i++) {
-//             const value = this.heap.pop();
-//             if (value) {
-//                 topValues.push(value);
-//             } else {
-//                 break;
-//             }
-//         }
-//         return topValues;
+            const value = this.heap.pop();
 
-//     }
-// }
+            if (value) topValues.push(value);
+            else break;
+            
+        }
+
+        return topValues;
+
+    }
+}
