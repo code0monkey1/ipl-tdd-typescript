@@ -1,9 +1,4 @@
 import { TableData } from "../uniques/uniques";
-
-export interface IFilter<F,T>{
-  execute(filters:F):T[]
-}
-
 interface ITableDataFilter<T> {
   filterEntries(data: T[], filters: Partial<T>): T[];
 }
