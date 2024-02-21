@@ -67,7 +67,7 @@ class MyHeap implements IHeap<WinnerCount>{
 
 
 describe('heap works well', () => {
-  
+
     it('test', () => {
         // arrange
      
@@ -85,7 +85,7 @@ describe('heap works well', () => {
 
        let c = heap.heapTop(3)
 
-      console.log(c)
+       expect(c).toStrictEqual( [ { a: 4 }, { b: 3 }, { c: 3 } ])
        
     });
 });
