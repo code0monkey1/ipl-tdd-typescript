@@ -1,15 +1,35 @@
-import { Comparator, Heap } from 'heap-js';
+import { Heap } from 'heap-js';
 
-type WinnerCount = Record<number, string>;
+type Comparator<T> = (a: T, b: T) => number
+
+const compareWinnerCount: Comparator<WinnerCount> = (a:WinnerCount, b:WinnerCount) => {
+          
+           const keyA = Object.values(a)[0]; // Get the key of object a
+            const keyB = Object.values(b)[0]; // Get the key of object b
+
+            // Compare the keys as numbers
+            if (keyA < keyB) {
+                return -1;
+            } else if (keyA > keyB) {
+                return 1;
+            } else {
+                return 0;
+            }
+             
+  };
+  
+
+type WinnerCount = Record<string, number>;
 
 class MyHeap<T> {
-    private numbers: T[];
+
+    private values: T[];
     private heap: Heap<T>;
 
     constructor(numbers: T[], compare: Comparator<T>) {
-        this.numbers = numbers;
+        this.values = numbers;
         this.heap = new Heap(compare);
-        this.heap.init(this.numbers);
+        this.heap.init(this.values);
     }
 
     heapPush(n: T) {
@@ -21,19 +41,16 @@ class MyHeap<T> {
     }
 }
 
+
 describe('heap works well', () => {
     it('test', () => {
         // arrange
-        const compareWinnerCount: Comparator<WinnerCount> = (a, b) => {
-            // Custom comparison logic for WinnerCount type
-            // Implement your comparison logic here
-            return 0; // Placeholder return value
-        };
+     
 
-        const heap = new MyHeap<WinnerCount>([{ 1: 'a' }, { 2: 'b' }, { 3: 'c' }], compareWinnerCount);
+        const heap = new MyHeap<WinnerCount>([{  'a':4 }, {  'b':3 }, {  'c':3 }], compareWinnerCount);
 
         // Pushes a new value to the heap
-        heap.heapPush({ 4: 'd' });
+        heap.heapPush({'d':1 });
 
         let v = heap.heapPop();
 
