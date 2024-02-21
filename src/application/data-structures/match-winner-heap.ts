@@ -21,17 +21,14 @@ export const topWinners: HeapComparator<WinnerCount> = (a:WinnerCount, b:WinnerC
   
 export class MyHeap implements IHeap<WinnerCount>{
 
-    private values: WinnerCount[]=[];
     private heap: Heap<WinnerCount>;
 
     constructor(compare: HeapComparator<WinnerCount>) {
         this.heap = new Heap(compare);
-        this.heap.init(this.values);
     }
 
     init(arr: WinnerCount[]){
-         this.values = arr;
-         this.heap.init(this.values);
+         this.heap.init(arr);
     }
 
     heapPush(n: WinnerCount) {
