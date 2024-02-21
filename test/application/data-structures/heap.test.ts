@@ -2,6 +2,8 @@ import { Heap } from 'heap-js';
 
 type WinnerCount = Record<number,string>
 
+export type Comparator<T> = (a: T, b: T) => number;
+
 interface IHeap<T>{
 
      heapPush(e:T):void
@@ -13,6 +15,7 @@ interface IHeap<T>{
 class MyHeap implements IHeap<string>{
    
      constructor(private numbers=[] as string []){
+       
        Heap.heapify(numbers)
      }
      heapPush(n:string){
