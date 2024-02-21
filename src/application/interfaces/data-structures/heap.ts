@@ -1,5 +1,7 @@
 export interface IHeap<T> {
 
+    init(arr: T[]):void
+
     heapPush(n:T):void
 
     heapPop():T|undefined

@@ -22,13 +22,17 @@ type WinnerCount = Record<string, number>;
 
 class MyHeap implements IHeap<WinnerCount>{
 
-    private values: WinnerCount[];
+    private values: WinnerCount[]=[];
     private heap: Heap<WinnerCount>;
 
-    constructor(arr: WinnerCount[]=[], compare: HeapComparator<WinnerCount>) {
-        this.values = arr;
+    constructor(compare: HeapComparator<WinnerCount>) {
         this.heap = new Heap(compare);
         this.heap.init(this.values);
+    }
+
+    init(arr: WinnerCount[]){
+         this.values = arr;
+         this.heap.init(this.values);
     }
 
     heapPush(n: WinnerCount) {
@@ -62,7 +66,9 @@ describe('heap works well', () => {
     it('test', () => {
         // arrange
      
-      const heap = new MyHeap([{  'b':3 },{  'a':4 }, {  'c':3 }], topWinners);
+      const heap = new MyHeap( topWinners);
+
+      heap.init([{  'b':3 },{  'a':4 }, {  'c':3 }])
 
         // Pushes a new value to the heap
       heap.heapPush({'d':1 });
