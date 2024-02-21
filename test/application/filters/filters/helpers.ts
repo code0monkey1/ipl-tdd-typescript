@@ -1,10 +1,5 @@
-import { SeasonFilter } from "../../../../src/application/interfaces/filters/match-filters/season-filter"
+
 import { Match, MatchProps, Result, TossDecision } from "../../../../src/domain/entities/Match"
-
-export const createSeasonFilter =(year:number)=>{
-
-    return new SeasonFilter(year)
-}
 
 export const createMatchWith=(props:Partial<MatchProps>)=>{
    
