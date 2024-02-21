@@ -1,5 +1,3 @@
 export interface UniqueValuesExtractor<T> {
-  getUniqueValues<K extends keyof T>(data: T[], attribute: K): T[K][];
+  getUniqueValues(data: T[], attribute: keyof T): T[keyof T][];
 }
-
-
