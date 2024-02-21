@@ -9,22 +9,31 @@ console.log(numbers); //> [ 2, 3, 5, 7 ]
 Heap.heappush(numbers, 1);
 console.log(numbers); //> [ 1, 2, 5, 7, 3 ]
 
-class MyHeap{
+type WinnerCount = Record<number,string>
+
+interface IHeap<T>{
+
+     heapPush(e:T):void
+
+     heapPop():T|undefined
+
+}
+
+class MyHeap implements IHeap<WinnerCount>{
    
-     constructor(private numbers=[] as number []){
+     constructor(private numbers=[] as WinnerCount []){
        Heap.heapify(numbers)
      }
-     heapPush(n:number){
+     heapPush(n:WinnerCount){
         Heap.heappush(this.numbers,n)
      }
 
-     heapPop():number|undefined{
+     heapPop():WinnerCount|undefined{
       return Heap.heappop(this.numbers)
      }
 
-     toString(){
-      Heap.toString()
-     }
+    
+
 
 }
 
@@ -34,19 +43,18 @@ describe('heap works well', () => {
      
     //arrange
       
-    const heap = new MyHeap([2, 3, -1, 5])
+    const heap = new MyHeap([{10:'a'},{1:'b'} ,{2:'c'} ])
 
     // Changes the array elements order into a heap in-place
-  
-    console.log(numbers); //> [ 2, 3, 5, 7 ]
 
     // Pushes a new value to the heap
-    heap.heapPush( 1);
-    console.log(numbers); //> [ 1, 2, 5, 7, 3 ]
+    heap.heapPush({999:'d'});
 
-    heap.heapPush(100)
-
+    while(heap.heapPop()!==undefined){
     console.log(heap.heapPop())
+    }
+
+
 
   })
   
