@@ -1,8 +1,8 @@
 import { Heap } from 'heap-js';
+import { HeapComparator, IHeap } from '../../../src/application/interfaces/data-structures/heap';
 
-type Comparator<T> = (a: T, b: T) => number
 
-const topWinners: Comparator<WinnerCount> = (a:WinnerCount, b:WinnerCount) => {
+const topWinners: HeapComparator<WinnerCount> = (a:WinnerCount, b:WinnerCount) => {
           
             const keyA = Object.values(a)[0]; // Get the key of object a
             const keyB = Object.values(b)[0]; // Get the key of object b
@@ -20,21 +20,13 @@ const topWinners: Comparator<WinnerCount> = (a:WinnerCount, b:WinnerCount) => {
 
 type WinnerCount = Record<string, number>;
 
-interface IHeap<T> {
-
-    heapPush(n:T):void
-
-    heapPop():T|undefined
-
-    heapTop(n:number):T[]|undefined
-}
 
 class MyHeap implements IHeap<WinnerCount>{
 
     private values: WinnerCount[];
     private heap: Heap<WinnerCount>;
 
-    constructor(arr: WinnerCount[]=[], compare: Comparator<WinnerCount>) {
+    constructor(arr: WinnerCount[]=[], compare: HeapComparator<WinnerCount>) {
         this.values = arr;
         this.heap = new Heap(compare);
         this.heap.init(this.values);
