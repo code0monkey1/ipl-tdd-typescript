@@ -1,7 +1,6 @@
 import { Heap } from 'heap-js';
 import { HeapComparator, IHeap } from '../../../src/application/interfaces/data-structures/heap';
 
-
 const topWinners: HeapComparator<WinnerCount> = (a:WinnerCount, b:WinnerCount) => {
           
             const keyA = Object.values(a)[0]; // Get the key of object a

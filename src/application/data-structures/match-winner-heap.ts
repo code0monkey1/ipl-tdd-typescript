@@ -1,9 +1,10 @@
 import { Heap } from 'heap-js';
-import { MyHeap } from "../interfaces/data-structures/heap";
+import { IHeap } from '../interfaces/data-structures/heap';
+
 
 type TeamWins =Record<string,number>
 
-export class MatchWinnerHeap  implements MyHeap<TeamWins>{
+export class MatchWinnerHeap  implements IHeap<TeamWins>{
    
   constructor(private heapArr:TeamWins[] =[]){
 
